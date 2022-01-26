@@ -1,0 +1,183 @@
+{% assign enter_date_of_birth = true %}
+
+{% assign min_age = 21 %}
+
+{% capture verify_header %}
+Please enter your date of birth
+{% endcapture %}
+
+{% capture verify_text %}
+You must be 21+ to checkout with the items in your cart
+{% endcapture %}
+
+<!-- TODO: put into general modal.css file -->
+<style>
+  .modal,
+  .prompt-background {
+    display: none;
+    opacity: 100%;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-prompt {
+    background: #fff;
+    width: 400px;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px 35px 30px 35px;
+    position: relative;
+    top: 25%;
+    z-index: 9999;
+    border-radius: 8px;
+    box-shadow: 1px 6px 4px 1px rgb(0 0 0 / 20%);
+  }
+
+  .field-inline-block {
+    display: inline-block;
+  }
+
+  .modal-title {
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  input,
+  label {
+    display: block;
+    color: grey;
+  }
+
+  fieldset {
+    border: none;
+  }
+
+  .field-inline-block>input {
+    border: 2px solid #05A5F7;
+    border-radius: 4px;
+  }
+
+  .dob-submit {
+    width: 100%;
+    color: #fff;
+    background-color: #05A5F7;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+  }
+
+</style>
+
+
+<div id="age-check-modal" class="modal prompt-bacground">
+  <div id="age-check-prompt" class="modal-prompt">
+    <!-- <span class="close">&times;</span> -->
+    <h1 class="modal-title">
+      {{ verify_header }}
+    </h1>
+    <p>
+      {{ verify_text }}
+    </p>
+
+    <p id='dob-error' style="display:none;">
+      <span> The age you entered is not old enough to purchase </span>
+    </p>
+
+    <h2>Date of Birth</h2>
+    <section id="date-of-birth">
+      <fieldset>
+        <div id='dob-form'>
+          <div class="field-inline-block">
+            <label>MM</label>
+            <input id='bmonth' type="text" pattern="[0-9]*" maxlength="2" size="2" class="date-field" />
+          </div>
+          /
+          <div class="field-inline-block">
+            <label>DD</label>
+            <input id='bday' type="text" pattern="[0-9]*" maxlength="2" size="2" class="date-field" />
+          </div>
+          /
+          <div class="field-inline-block">
+            <label>YYYY</label>
+            <input id='byear' type="text" pattern="[0-9]*" maxlength="4" size="4"
+              class="date-field date-field date-year" />
+          </div>
+          <!-- <br/> -->
+          <!-- <p class="field-inline-block" style="margin-top: 10px; margin-bottom:0;"><small>E.g. 07/28/1994</small></p> -->
+        </div>
+      </fieldset>
+    </section>
+    <div{% unless enter_date_of_birth %} style="display:none;" {% endunless %}>
+      <div style="clear:both; margin-bottom:15px"></div>
+  </div>
+  <input type="submit" name="checkout" class="dob-submit button solid" id="ageSubmit"
+    value="{{ 'cart.general.checkout' | t }}">
+</div>
+
+<script>
+
+  var submitBtn = document.getElementById("ageSubmit");
+
+  var error = document.getElementById("dob-error");
+
+
+  function ageCheck() {
+
+    // Set the minimum age.
+    var min_age = {{ min_age }
+  };
+  var year = parseInt(document.getElementById('byear').value);
+  var month = parseInt(document.getElementById('bmonth').value);
+  var day = parseInt(document.getElementById('bday').value);
+  console.log(year);
+  console.log(day);
+  console.log(month);
+  // add age to their birthday and compare with today.
+  var theirDate = new Date((year + min_age), month, day);
+  var today = new Date;
+  console.log(today.getTime());
+  console.log(theirDate.getTime());
+  console.log(today.getTime() - theirDate.getTime());
+  if ((today.getTime() - theirDate.getTime()) > 0) {
+    // window.location = 'https://shop.purebrewing.org/cart'; //enter domain url where you would like the underaged visitor to be sent to.
+    return true;
+  } else {
+    error.style.display = "block";
+    return false;
+  };
+};
+
+  submitBtn.onclick = function (e) {
+    var isValidDate = ageCheck();
+    if (!isValidDate) {
+      // alert("IMPORTANT:  You must be 21 to purchase from Pure Project. ");
+      e.preventDefault();
+    }
+  }
+</script>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("age-check-modal");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
