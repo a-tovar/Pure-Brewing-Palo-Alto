@@ -40,7 +40,9 @@
   assign preorder = false
   assign on_sale = false
   assign sold_out = false
+  assign pickup_only = false
   assign badge = false
+  assign hero = false
   
   if product_tags contains '_badge_'
     assign badge = product_tags | split: '_badge_'
@@ -51,6 +53,10 @@
     assign preorder = true
   endif
 
+  if product_tags contains 'hero'
+    assign hero = true
+  endif
+
   if product.compare_at_price > product.price
     assign on_sale = true
   endif
@@ -58,6 +64,10 @@
   unless product.available
     assign sold_out = true
   endunless
+
+  if product_tags contains 'pickup' and sold_out
+    assign pickup_only = true
+  endif
 
   assign current_variant = product.selected_or_first_available_variant
   assign featured_media = product.featured_media
@@ -121,7 +131,7 @@
       </div>
     {%- endif -%}
 
-    {%- render 'product-badge', on_sale: on_sale, sold_out: sold_out, badge: badge, preorder_badge: preorder_badge -%}
+    {%- render 'product-badge', on_sale: on_sale, sold_out: sold_out, pickup_only: pickup_only, badge: badge, preorder_badge: preorder_badge -%}
 
     {%- if settings.product_grid_slideshow and section.settings.products_layout != 'carousel' and product.media.size > 1 -%}
       <div class="product__media-slider product__media-slider--mobile" data-product-media-slideshow>

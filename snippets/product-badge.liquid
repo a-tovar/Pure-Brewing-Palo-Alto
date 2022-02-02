@@ -3,7 +3,8 @@
 
    if settings.product_badge_style == 'circle'
      assign soldout = 'products.product.sold_out_html' | t | replace: ' ', '<br>'
-
+     assign pickup = 'products.product.pickup_html' | t | replace: ''
+     
      if badge
        assign badge = badge | replace: ' ', '<br>'
      endif
@@ -18,6 +19,8 @@
 
 {%- if badge and show_badge -%}
   <div class="product__tag product__tag--custom product__tag--{{ settings.product_badge_style }}"><span>{{ badge }}</span></div>
+{%- elsif pickup_only -%}
+  <div class="product__tag product__tag--{{ settings.product_badge_style }}"><span>{{ pickup }}</span></div> 
 {%- elsif sold_out -%}
   <div class="product__tag product__tag--{{ settings.product_badge_style }}"><span>{{ soldout }}</span></div>
 {%- elsif preorder and show_badge -%}

@@ -435,6 +435,7 @@
     },
     "product": {
       "sold_out_html": "Sold Out",
+      "pickup_html": "Pickup Only",
       "on_sale_html": "Sale",
       "on_sale_from_html": "On Sale from {{ price }}",
       "preorder": "Pre-order",
@@ -444,6 +445,8 @@
       "add_to_cart": "Add to cart",
       "buy_it_now": "Buy it now",
       "sold_out": "Sold Out",
+      "pickup_only": "Pickup Only",
+      "coming_soon": "Coming Soon",
       "on_sale": "Sale",
       "view_item": "View Item",
       "view_product": "View product",
