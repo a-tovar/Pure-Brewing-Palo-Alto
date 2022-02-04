@@ -459,7 +459,7 @@
 
             {%- if collection_count > 0 -%}
               {%- if collection.products_count > 0 -%}
-                <div class="grid"{% if enable_infinity_scroll %} id="AjaxinateLoop"{% endif %}>
+                <div class="product-grid grid"{% if enable_infinity_scroll %} id="AjaxinateLoop"{% endif %}>
 
                   {%- for product in collection.products -%}
                     {%- render 'product-grid-item', product: product -%}

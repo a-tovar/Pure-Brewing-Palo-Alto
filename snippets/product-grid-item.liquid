@@ -73,13 +73,15 @@
   assign featured_media = product.featured_media
 -%}
 
-<div class="product-grid-item{% if carousel %} carousel__item{% endif %} {{ size_desktop }} {{ size_mobile }}{% if tag %} has-tag{% endif %}"
+<div class="{% if hero %} product-grid-item__hero {% endif %}product-grid-item{% if carousel %} carousel__item{% endif %} {{ size_desktop }} {{ size_mobile }}{% if tag %} has-tag{% endif %}"
   {% if carousel %}
     data-product-slide
   {% endif %}
   data-product-id="{{ product.id }}"
 >
   {%- comment -%} Image {%- endcomment -%}
+  {%- render 'product-badge', on_sale: on_sale, sold_out: sold_out, pickup_only: pickup_only, badge: badge, preorder_badge: preorder_badge -%}
+  <div class="product-grid-item__content">
   <div class="product-grid-item__image" data-product-media-container>
     {%- assign image = featured_media.preview_image -%}
     {%- if product.media.size > 0 -%}
@@ -131,7 +133,7 @@
       </div>
     {%- endif -%}
 
-    {%- render 'product-badge', on_sale: on_sale, sold_out: sold_out, pickup_only: pickup_only, badge: badge, preorder_badge: preorder_badge -%}
+    
 
     {%- if settings.product_grid_slideshow and section.settings.products_layout != 'carousel' and product.media.size > 1 -%}
       <div class="product__media-slider product__media-slider--mobile" data-product-media-slideshow>
@@ -206,7 +208,7 @@
     {%- unless settings.quick_button == 'none' -%}
       <div class="btn-wrapper">
         {%- if settings.quick_button == 'view' -%}
-          <a class="btn btn--quick-view"
+          <a class="product-grid-item__quick-button btn btn--quick-view"
             href="{{ product.url | within: collection }}"
             title="{{ product.title | strip_html | escape }}"
             aria-label="{{ product.title | strip_html | escape }}"
@@ -227,6 +229,7 @@
       </div>
     {%- endunless -%}
   </div>
+  
 
   {% comment %} Product info {% endcomment %}
   <div class="product-grid-item__info">
@@ -300,6 +303,7 @@
 		{%- endfor -%}
 
 	</div>
+  </div>
 {%- endunless -%}
     {%- endif -%}
   </div>
