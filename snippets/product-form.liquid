@@ -117,11 +117,21 @@
     {%- else -%}
       <input name="id" data-productid="{{ product.id }}" type="hidden" value="{{ current_variant.id }}" data-product-select>
     {%- endif -%}
+
+    {%- comment -%} Shipping / pickup radios {%- endcomment -%}
+    <div class="product-form__radio-div">
+      <label class="product-form__radio-label" for="shipping">
+        <input type="radio" id="shipping" name="delivery" value="shipping" class="product-form__radio-input" checked>
+        <span class="product-form__radio-span">Order for shipping</span>
+      </label>
+      <label class="product-form__radio-label" for="pickup">
+        <input type="radio" id="pickyp" name="delivery" value="subscription" class="product-form__radio-input">
+        <span class="product-form__radio-span">Order for pickup</span>
+      </label>
+    </div>
+
 {% comment %} 
     {%- if settings.show_quantity -%}
-      {%- comment -%}
-        Quantity Selector
-      {%- endcomment -%}
       <div class="quantity-wrapper{% if enable_variant_boxes %} quantity-wrapper--half{% endif %}">
         <div class="popout" data-popout-option>
           <button type="button" class="popout__toggle popout__toggle--product option__select" aria-expanded="false" aria-controls="lang-list" aria-describedby="lang-heading" data-popout-toggle data-popout-quantity>
@@ -164,6 +174,7 @@
           <input type="number" name="quantity" id="quantity--{{ unique }}" value="1" min="1">
         </noscript>
       </div>
+    {% endif %}
 
     {%- else -%}
       <input type="hidden" name="quantity" value="1">
@@ -226,4 +237,3 @@
       </div>
     {%- endif -%}
   </div>
-{%- endform -%}
