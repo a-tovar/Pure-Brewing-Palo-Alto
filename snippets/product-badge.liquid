@@ -18,13 +18,13 @@
 -%}
 
 {%- if badge and show_badge -%}
-  <div class="product__tag product__tag--custom product__tag--{{ settings.product_badge_style }}"><span>{{ badge }}</span></div>
+  <div class="product-badge product__tag product__tag--custom product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ badge }}</span></div>
 {%- elsif pickup_only -%}
-  <div class="product__tag product__tag--{{ settings.product_badge_style }}"><span>{{ pickup }}</span></div> 
+  <div class="product-badge product-badge__pickup product__tag product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ pickup }}</span></div> 
 {%- elsif sold_out -%}
-  <div class="product__tag product__tag--{{ settings.product_badge_style }}"><span>{{ soldout }}</span></div>
+  <div class="product-badge product-badge__soldout product__tag product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ soldout }}</span></div>
 {%- elsif preorder and show_badge -%}
-  <div class="product__tag product__tag--custom product__tag--{{ settings.product_badge_style }}"><span>{{ preorder_badge }}</span></div>
+  <div class="product-badge product-badge__comingsoon product__tag product__tag--custom product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ preorder_badge }}</span></div>
 {%- elsif on_sale and show_badge -%}
-  <div class="product__tag product__tag--{{ settings.product_badge_style }}"><span>{{ 'products.product.on_sale_html' | t }}</span></div>
+  <div class="product-badge product__tag product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ 'products.product.on_sale_html' | t }}</span></div>
 {%- endif -%}
