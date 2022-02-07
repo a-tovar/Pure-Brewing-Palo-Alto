@@ -73,7 +73,7 @@
   assign featured_media = product.featured_media
 -%}
 
-<div class="{% if hero %} product-grid-item__hero {% endif %}product-grid-item{% if carousel %} carousel__item{% endif %} {{ size_desktop }} {{ size_mobile }}{% if tag %} has-tag{% endif %}"
+<div class="{% if hero %} product-grid-item__hero {% endif %}product-grid-item{% if carousel %} carousel__item {% else %} non-carousel__item {% endif %} {{ size_desktop }} {{ size_mobile }}{% if tag %} has-tag{% endif %}"
   {% if carousel %}
     data-product-slide
   {% endif %}
