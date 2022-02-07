@@ -1,5 +1,11 @@
 <!-- /snippets/product-form.liquid -->
 
+<style>
+  #product-location-selector {
+    display: none;
+  }
+</style>
+
 {%- liquid
   assign variants_count = product.variants.size
   assign enable_color_swatches = settings.enable_color_swatches
@@ -121,13 +127,71 @@
     {%- comment -%} Shipping / pickup radios {%- endcomment -%}
     <div class="product-form__radio-div">
       <label class="product-form__radio-label" for="shipping">
-        <input type="radio" id="shipping" name="delivery" value="shipping" class="product-form__radio-input" checked>
+        <input type="radio" id="product-shipping" name="delivery" value="shipping" class="product-form__radio-input" checked>
         <span class="product-form__radio-span">Order for shipping</span>
       </label>
       <label class="product-form__radio-label" for="pickup">
-        <input type="radio" id="pickyp" name="delivery" value="subscription" class="product-form__radio-input">
+        <input type="radio" id="product-pickup" name="delivery" value="pickup" class="product-form__radio-input">
         <span class="product-form__radio-span">Order for pickup</span>
       </label>
+    </div>
+
+    {%- comment -%} Pickup selector {%- endcomment -%}
+    {% assign hasMiramar = 0 %}
+    {% assign hasBalboa = 0 %}
+    {% assign hasCarlsbad = 0 %}
+    {% assign hasVista = 0 %}
+    {% for tag in product.tags %}
+      {% if tag=='miramar' %}
+        {% assign hasMiramar = 1 %}
+      {% elsif tag=='balboa' %}
+        {% assign hasBalboa = 1 %}
+      {% elsif tag=='carlsbad' %}
+        {%assign hasCarlsbad = 1 %}
+      {% elsif tag=='vista'%}
+        {% assign hasVista = 1 %}
+      {% endif %}
+    {% endfor %}
+    <div id="product-location-selector" class="selector-wrapper" data-option="option">
+      <div class="popout" data-popout-option>
+        <button type="button" class="popout__toggle popout__toggle--product option__select" aria-expanded="false" aria-controls="lang-list" aria-describedby="lang-heading" data-popout-toggle>
+          Location:
+          <!-- <span class="popout__toggle-value" data-popout-text></span> -->
+          {%- render 'icon-arrow' -%}
+        </button>
+        <!-- TODO: why aren't the links working? -->
+        <ul id="option-list" class="popout-list popout-list-option popout-list--product" data-popout-list>
+          {% if hasMiramar == 1 %}
+          <li class="popout-list__item" data-popout-item>
+            <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project/v3/?mode=fulfillment" target="_blank" data-value="miramar" data-popout-option>
+              <span>Miramar</span>
+            </a>
+          </li>
+          {% endif %}
+          {% if hasBalboa == 1 %}
+          <li class="popout-list__item" data-popout-item>
+            <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project-bankers-hill/v3/?mode=fulfillment" target="_blank" data-value="balboa" data-popout-option>
+              <span>Balboa</span>
+            </a>
+          </li>
+          {% endif %}
+          {% if hasCarlsbad == 1 %}
+          <li class="popout-list__item" data-popout-item>
+            <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project-carlsbad/v3/?mode=fulfillment" target="_blank" data-value="carlsbad" data-popout-option>
+              <span>Carlsbad</span>
+            </a>
+          </li>
+          {% endif %}
+          {% if hasVista == 1 %}
+          <li class="popout-list__item" data-popout-item>
+            <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project-vista-1305-hot-spring-way/v3/?mode=fulfillment" target="_blank" data-value="vista" data-popout-option>
+              <span>Vista</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+        <!-- <input type="hidden" name="{{ option.name }}" value="{{ option.selected_value | escape }}" data-popout-input data-single-option-selector data-index="option{{ option.position }}" id="SingleOptionSelector-{{ index }}-{{ product_id }}" /> -->
+      </div>
     </div>
 
 {% comment %} 
@@ -230,10 +294,30 @@
       <span class="product-form__submit-price">{{ current_variant.price | money }}</span>
       {%- render 'icon-loading' -%}
     </button>
-</div>
+  </div>
     {%- if show_payment_button -%}
       <div data-payment-button="{{ section.settings.show_payment_button }}" data-quickview-payment-button="{{ settings.show_payment_button }}">
         {{- form | payment_button -}}
       </div>
     {%- endif -%}
   </div>
+{%- endform -%}
+
+<script>
+  $(function() {
+    // Show / hide location selector
+    let radioShipping = $('#product-shipping');
+    let radioPickup = $('#product-pickup');
+    $('input[type=radio][name=delivery]').change(function() {
+      console.log(this.value);
+      if (this.value == 'shipping') {
+        $('#product-location-selector').first().slideUp('fast');
+      }
+      else if (this.value == 'pickup') {
+        $('#product-location-selector').first().slideDown('fast');
+      }
+    });
+
+    // Sticky ATC button
+  });
+</script>

@@ -11670,6 +11670,7 @@ input[type="radio"].variant-input {
   height: 3em;
   background-color: #00AEEF;
   padding: 0 1em;
+  border-radius: 3px;
 }
 .quantity-wrapper {
   width: 30%;

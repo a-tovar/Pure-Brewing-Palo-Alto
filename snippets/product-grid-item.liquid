@@ -238,6 +238,9 @@
       {{- product.title | strip_html | escape -}}
     </a>
 
+    {%- comment -%} Beer Type {%- endcomment -%}
+    {% render 'beer-type-picker', _product: product %}
+
     {% comment %} Price {% endcomment %}
     <a class="product-grid-item__price price" href="{{ product.url | within: collection }}">
       {%- if product.price_varies -%}
