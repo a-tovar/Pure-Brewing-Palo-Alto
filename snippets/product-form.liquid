@@ -4,6 +4,11 @@
   #product-location-selector {
     display: none;
   }
+  .shipping-faq {
+    color: grey;
+    text-decoration: underline;
+    font-size: 1.02rem;
+  }
 </style>
 
 {%- liquid
@@ -194,58 +199,6 @@
       </div>
     </div>
 
-{% comment %} 
-    {%- if settings.show_quantity -%}
-      <div class="quantity-wrapper{% if enable_variant_boxes %} quantity-wrapper--half{% endif %}">
-        <div class="popout" data-popout-option>
-          <button type="button" class="popout__toggle popout__toggle--product option__select" aria-expanded="false" aria-controls="lang-list" aria-describedby="lang-heading" data-popout-toggle data-popout-quantity>
-            <span class="quantity__text">{{ 'products.product.quantity' | t }}: </span>
-
-            <span class="popout__toggle-value" data-popout-text data-quantity-select>1</span>
-
-            {%- render 'icon-arrow' -%}
-          </button>
-
-          <ul id="option-list" class="popout-list popout-list-option popout-list--product" data-popout-list>
-            {%- for qty_num in (1..10) -%}
-              <li class="popout-list__item" data-popout-item>
-                <a class="popout-list__option popout-list__option--product" href="#" data-value="{{ qty_num }}" data-popout-option>
-                  <span>
-                    {{- qty_num -}}
-                    {%- if forloop.last -%}+{%- endif-%}
-                  </span>
-                </a>
-              </li>
-            {%- endfor -%}
-          </ul>
-
-          <button type="button" class="quantity__btn visually-hidden quantity__btn--decrease" data-quantity-button>
-            <span class="visually-hidden">{{ 'general.accessibility.decrease' | t }}</span>
-            {%- render 'icon-minus' -%}
-          </button>
-
-          <input type="hidden" name="quantity" value="1" min="1" pattern="[0-9]*" class="quantity__selector quantity__input" data-popout-input data-quantity-input/>
-
-          <button type="button" class="quantity__btn visually-hidden quantity__btn--increase" data-quantity-button>
-            <span class="visually-hidden">{{ 'general.accessibility.increase' | t }}</span>
-            {%- render 'icon-plus' -%}
-          </button>
-
-        </div>
-
-        <noscript>
-          <label for="quantity--{{ unique }}">{{ 'products.product.quantity' | t }}</label>
-          <input type="number" name="quantity" id="quantity--{{ unique }}" value="1" min="1">
-        </noscript>
-      </div>
-    {% endif %}
-
-    {%- else -%}
-      <input type="hidden" name="quantity" value="1">
-    {%- endif -%}
-  </div> 
-  {% endcomment %}
-
   {%- comment -%}
     Buttons
   {%- endcomment -%}
@@ -301,15 +254,18 @@
       </div>
     {%- endif -%}
   </div>
+
+  <a class="shipping-faq" href="#">IMPORTANT: Shipping FAQ & Prop 65 Warning</a>
 {%- endform -%}
+
+{% render 'shipping-faq-modal' %}
 
 <script>
   $(function() {
     // Show / hide location selector
-    let radioShipping = $('#product-shipping');
-    let radioPickup = $('#product-pickup');
+    const radioShipping = $('#product-shipping');
+    const radioPickup = $('#product-pickup');
     $('input[type=radio][name=delivery]').change(function() {
-      console.log(this.value);
       if (this.value == 'shipping') {
         $('#product-location-selector').first().slideUp('fast');
       }
@@ -318,6 +274,11 @@
       }
     });
 
-    // Sticky ATC button
+    // Open shipping faq modal
+    let shippingModal = $('#shipping-faq-modal');
+    $('.shipping-faq').first().on('click', (e) => {
+      e.preventDefault();
+      shippingModal.css('display', 'block');
+    });
   });
 </script>
