@@ -539,7 +539,7 @@ input[disabled] {
 .disabled.shopify-payment-button__button--unbranded:hover,
 .shopify-payment-button__button--unbranded:disabled:hover,
 [disabled].shopify-payment-button__button--unbranded:hover {
-  color: var(--button-primary-text-alpha-50);
+  color: #FFFFFF;
 }
 .show-buttons-animation .btn.disabled:before,
 .show-buttons-animation .btn:disabled:before,
@@ -4626,7 +4626,7 @@ button.mfp-close {
 .drawer--right {
   width: var(--drawer-width);
   left: 100vw;
-  border-left: 2px solid var(--accent);
+  border-left: 2px solid #05A5F7;
 }
 .js-drawer-open-right .drawer--right {
   visibility: visible;
@@ -4689,7 +4689,7 @@ button.mfp-close {
   display: block;
   width: 100%;
   margin-bottom: calc(var(--gutter) / 2);
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 2px solid #05A5F7;
 }
 .site-footer {
   background: var(--bg);
@@ -6112,8 +6112,14 @@ button.mfp-close {
   color: var(--text);
 }
 #CartContainer .drawer__button {
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: #00AEEF;
+  font-weight: 700;
+  border: none;
   width: 100%;
   margin-left: 0;
+  border-radius: 3px;
 }
 #CartContainer .cart__row--buttons {
   margin-top: 20px;
@@ -6821,7 +6827,7 @@ button.mfp-close {
 .collection__sort__label {
   position: relative;
   display: block;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #D6D6D6;
   border-radius: 0;
   padding: 20px 40px 20px 0;
   margin: 0;
@@ -11539,6 +11545,9 @@ input[type="radio"].variant-input {
 .featured-collection__heading {
   font-weight: 700;
 }
+.product-single__thumbnail-link {
+  border: none;
+}
 
 /* Product Tags */
 .product-badge {
@@ -11605,13 +11614,12 @@ input[type="radio"].variant-input {
   overflow: hidden;
 }
 .non-carousel__item {
-  height: 200px;
+  height: 230px;
   width: 100%;
 }
 .product-grid-item__content {
   overflow: hidden;
   width: 100%;
-  height: 223px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -11639,8 +11647,11 @@ input[type="radio"].variant-input {
 .product-grid-item__info {
   align-items: flex-start;
   width: 40%;
+  padding-top: 5px;
   margin: 0 auto;
   gap: 0;
+  font-size: 12px;
+  color: #7E7E7E;
 }
 .product-grid-item__title {
   font-size: 13px;
@@ -11679,6 +11690,7 @@ input[type="radio"].variant-input {
   grid-template-columns: minmax(0, 1fr);
 }
 .product-form__buttons-grid {
+  max-width: 364px;
   grid-template-columns: minmax(0, 1fr);
 }
 .product-form__btn-container {
@@ -11687,6 +11699,12 @@ input[type="radio"].variant-input {
   height: 3em;
   background-color: #00AEEF;
   padding: 0 1em;
+  border-radius: 3px;
+}
+.product-form__btn-container-disabled {
+  padding: 0;
+  background-color: #7E7E7E;
+  color: #D6D6D6;
   border-radius: 3px;
 }
 .quantity-wrapper {
@@ -11738,6 +11756,14 @@ input[type="radio"].variant-input {
   padding: 0;
   align-items: center;
 }
+
+.product-form__submit-btn:disabled {
+  background-color: #7E7E7E;
+  color: #D6D6D6;
+  border-radius: 3px;
+}
+
+
 .product-form__submit-text {
   font-weight: 600;
 }
@@ -11801,10 +11827,43 @@ input[type="radio"].variant-input {
   }
 }
 
-@media only screen and (min-width: 425px) {
+@media only screen and (min-width: 717px) {
   .non-carousel__item {
-    height: 223px;
+    height: 400px;
   }
+}
+
+@media only screen and (min-width: 618px) and (max-width: 716px) {
+  .non-carousel__item {
+    height: 350px;
+  }
+}
+
+@media only screen and (min-width: 618px) and (max-width: 716px) {
+  .non-carousel__item {
+    height: 350px;
+  }
+}
+
+@media only screen and (min-width: 566px) and (max-width: 617px) {
+  .non-carousel__item {
+    height: 300px;
+  }
+}
+
+@media only screen and (min-width: 515px) and (max-width: 565px) {
+  .non-carousel__item {
+    height: 275px;
+  }
+}
+
+@media only screen and (min-width: 425px) and (max-width: 514px) {
+  .non-carousel__item {
+    height: 250px;
+  }
+}
+
+@media only screen and (min-width: 425px) {
   .product-badge {
     width: 108px;
   }
@@ -11827,7 +11886,7 @@ input[type="radio"].variant-input {
 
 @media only screen and (max-width: 350px) {
   .non-carousel__item {
-    height: 170px;
+    height: 200px;
   }
   .product-badge {
     width: 108px;
