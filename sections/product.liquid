@@ -260,6 +260,53 @@
       "limit": 1
     },
     {
+      "name": "Additional media",
+      "type": "media",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Form elements"
+        },
+        {
+          "type": "text",
+          "id": "additional_video_url",
+          "label": "Additional video URL",
+          "info": "Video to show next to product description.",
+          "default": "<p>https://www.youtube.com/embed/gNqNzDyb9WA</p>"
+        },
+        {
+          "type": "text",
+          "id": "additional_image_url",
+          "label": "Additional image URL",
+          "info": "Image to show next to product description",
+          "default": "<p>https://cdn.shopify.com/s/files/1/2114/3207/files/1__graphic.png</p>"
+        },
+        {
+          "type": "text",
+          "id": "additional_image_alt",
+          "label": "Additional image alt text",
+          "default": "<p>additional product image</p>"
+        }
+      ]
+    },
+    {
+      "name": "Desktop bottom image",
+      "type": "banner-bottom",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Form elements"
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_bottom_image",
+          "label": "Bottom image"
+        }
+      ]
+    },
+    {
       "name": "Social sharing",
       "type": "social-sharing",
       "limit": 1

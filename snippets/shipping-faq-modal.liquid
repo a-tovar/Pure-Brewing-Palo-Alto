@@ -1,0 +1,107 @@
+<style>
+  .modal, .prompt-background {
+    display: none;
+    opacity: 100%;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  #shipping-faq-prompt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: scroll;
+    background: #fff;
+    width: 80vw;
+    max-width: 800px;
+    height: 60vh;
+    max-height: 600px;
+    margin: 0 auto;
+    padding: 32px 26px;
+    position: relative;
+    top: 20%;
+    z-index: 9999;
+    border-radius: 8px;
+    box-shadow: 1px 6px 4px 1px rgb(0 0 0 / 20%);
+  }
+  .shipping-close {
+    position: absolute;
+    top: 0;
+    right: 6px;
+    border-radius: 50%;
+    margin: 4px 2px;
+    background-color: black;
+    padding: 1px 9px;
+    color: white;
+  }
+  
+  @media only screen and (max-width: 320px) {
+    .modal-prompt {
+      min-width: 80vw;
+      min-height: 80vw;
+      padding: 26px 24px;
+    }
+  }
+</style>
+
+
+<div id="shipping-faq-modal" class="modal prompt-bacground">
+  <div id="shipping-faq-prompt" class="modal-prompt">
+    <div>
+      <a href="#" class="close shipping-close">&times;</a>
+    </div>
+
+    <div id="faq_content">
+      <p><b>IMPORTANT: </b><span style="font-weight: 400;">Please read all of the information below for merchandise and beer shipping information.</span></p>
+      <br/>
+      <p><b>*You must be 21 or older to purchase beer and someone 21 or older must be available to sign for the package. No exceptions and you cannot give your ID to someone underage to sign.</b></p>
+      <br/>
+      <p><b>Q: Where do you ship?</b></p>
+      <p><span style="font-weight: 400;">A: Currently we only ship beer within California and to metropolitan areas of Nevada. We do NOT ship BEER outside of the state of California or Nevada. We DO ship merchandise to all states within the US.</span></p>
+      <br/>
+      <p><b>Q: How does the shipping work?</b></p>
+      <p><span style="font-weight: 400;">A: We ship beer on Mondays and Thursdays of each week for overnight delivery. For example, if you place an order on Friday, it will ship the following Monday for Tuesday deliver. Packages will be shipped "next day" freight and MUST be signed for by someone over 21 years of age (you cannot leave your ID with a minor). Merchandise usually ships within two (2) business days. </span></p>
+      <br/>
+      <p><b>Q: How much does shipping cost?</b></p>
+      <p><span style="font-weight: 400;">A: <b>Beer:</b> $15 flat rate for all beer orders under $200. For orders over $200, shipping is included. 
+      <br>
+      <b>Merchandise:</b> Free for orders over $50! For orders under $50, the shipping costs are calculated using the standard USPS rates. </span></p>
+      <br/>
+      <p><b>Q: What beers can I buy and when?</b></p>
+      <p><span style="font-weight: 400;">A: We are a small brewery, so our availability and date of beer sales will vary. To get updates on when and what the next sale will be, please sign up for our <a href="https://www.purebrewing.org/list-opt-in/" target="_blank">email and/or text notifications here</a>.<br>
+      <br/><br/>
+      <b>PROP 65 WARNING:</b><br>Drinking distilled spirits, beer, coolers, wine and other alcoholic beverages may increase cancer risk, and, during pregnancy, can cause birth defects.  For more information go to <a href="https://www.p65warnings.ca.gov/products/alcoholic-beverages" target="_blank">www.P65Warnings.ca.gov/alcohol</a>.
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    // Get the modal
+    const modal = $("#shipping-faq-modal");
+
+    // Get the <span> element that closes the modal
+    const closeBtn = $(".close").first();
+
+    // When the user clicks on <span> (x), close the modal
+    closeBtn.on('click', (e) => {
+      e.preventDefault();
+      modal.css('display', 'none');
+    });
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      console.log(event.target);
+      if (event.target == document.getElementById('shipping-faq-modal')) {
+        console.log('TRUE');
+        modal.css('display', 'none');
+      }
+    }
+  });
+</script>
