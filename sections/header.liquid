@@ -355,7 +355,7 @@
       {%- if dropdown_links != blank or dropdown_links_and_image != blank or megamenu != blank -%}
         <li class="nav__item nav__item--level-1 nav__item--has-items nav__item--default{% if megamenu != blank %} nav__item--has-megamenu{% else %} nav__item--has-dropdown{% endif %}{% if dropdown_links_and_image != blank %} nav__item--has-dropdown--image{% endif %}" aria-haspopup="true" nav-item>
           <a href="{{ link.url }}" class="nav__link{% if link.active %} nav__link--active{% endif %}" nav-link>
-            {{- link.title | escape -}}
+            {{- link.title | escape -}} {% if dropdown_links != blank %} <i class="fa fa-chevron-down" style="font-size: 14px;"></i> {% endif %}
           </a>
 
           {%- if megamenu != blank -%}
