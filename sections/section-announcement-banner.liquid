@@ -7,7 +7,7 @@
 {%- endstyle -%}
 
 {%- liquid 
-  assign show_shipping_message = section.settings.show_shipping_message
+  assign show_shipping_info = section.settings.show_shipping_info
   assign beer_shipping_text = section.settings.beer_shipping_text
   assign merch_shipping_text = section.settings.merch_shipping_text
 
@@ -35,16 +35,20 @@
 <section >
   <div >
       <div >
+        {% if show_shipping_info%}
         <div >
-          {{- hasBeer -}}
-          {{- hasMerch -}}
-          {{- merch_shipping_text -}}
           {% if hasBeer == false and hasMerch %}
               {{- merch_shipping_text -}}
             {% else %}
               {{- beer_shipping_text -}}
             {% endif %}
-            </div>
+          </div>
+        {% endif %}
+        {% if show_announcement_info %}
+        <div >
+          {{- announcement_info_text -}}
+        </div>
+        {% endif %}
         </div>
       </div>
   </div>
@@ -77,7 +81,13 @@
         "type": "checkbox",
         "id": "show_announcement_info",
         "label": "Show Announcement Info",
-        "default": true
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "announcement_info_text",
+        "label": "Announcement Text",
+        "default": "Type Announcement Here"
       },
       {
         "type": "color",
