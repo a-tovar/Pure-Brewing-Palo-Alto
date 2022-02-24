@@ -1,150 +1,150 @@
 {%assign beertype = ''%}
 {%assign isbundle = 0%}
 {%assign ispairing = 0%}
- {% for tag in _product.tags %}
-   {% if tag=='bundle' or tag=='sampler' %}
-   {%assign isbundle = 1%}
-     {%assign beertype = 'Mixed Pack' %}
-   {% break %}
-   {% elsif tag=='blonde' %}
-     {%assign beertype = 'Blonde Ale' %}
-   {% break %}
- {% elsif tag=='pub' %}
-     {%assign beertype = 'Pub Ale' %}
-   {% break %}
- {% elsif tag=='barleywine' %}
-     {%assign beertype = 'Barleywine' %}
-   {% break %}
- {% elsif tag=='cream' %}
-     {%assign beertype = 'Cream Ale' %}
-   {% break %}
- {% elsif tag=='belgian' %}
-     {%assign beertype = 'Belgian-style Ale' %}
-   {% break %}
- {% elsif tag=='porter' %}
-     {%assign beertype = 'Porter' %}
-   {% break %}
- {% elsif tag=='lager' %}
-   {%assign beertype = 'Lager' %}
-   {% for tag in product.tags %}
-     {% if tag=='pilsner' %}
-             {%assign beertype = 'Pilsner' %}
-       {% break %}
-     {% endif %} 
-   {% endfor %}
-   {% break %}
- {% elsif tag=='IPA' %}
- {%assign beertype = 'IPA' %}
-     {% for tag in product.tags %}
-     {% if tag=='west coast' %}
-       {% for tag in product.tags %}
-                   {% if tag=='single' %}
-                       {%assign beertype = 'West Coast IPA' %}
-                       {% break %}
-         {% elsif tag=='double'%}
-           {%assign beertype = 'West Coast Double IPA' %}
-                       {% break %}
-         {% elsif tag=='triple'%}
-           {%assign beertype = 'West Coast Triple IPA' %}
-                       {% break %}
-         {% elsif tag=='quad'%}
-           {%assign beertype = 'West Coast Quad IPA' %}
-                       {% break %}
-         {% elsif tag=='quint'%}
-           {%assign beertype = 'West Coast Quint IPA' %}
-                       {% break %}
-                   {% endif %} 
-               {% endfor %}
-         
-       {% break %}
-     {% elsif tag == 'murky IPA' %}
-       {% for tag in product.tags %}
-                   {% if tag=='single' %}
-                       {%assign beertype = 'Murky IPA' %}
-                       {% break %}
-         {% elsif tag=='double'%}
-           {%if product.tags contains 'sour' %}
-             {%assign beertype = 'Sour Double IPA' %}
-           {%else%}
-             {%assign beertype = 'Murky Double IPA' %}
-           {% endif %} 
-                       {% break %}
-         {% elsif tag=='triple'%}
-           {%assign beertype = 'Murky Triple IPA' %}
-                       {% break %}
-         {% elsif tag=='quad'%}
-           {%assign beertype = 'Murky Quad IPA' %}
-                       {% break %}
-         {% elsif tag=='quint'%}
-           {%assign beertype = 'Murky Quint IPA' %}
-                       {% break %}
-                   {% endif %} 
-               {% endfor %}
-       {% break %}
-     {% endif %} 
-   {% endfor %}
-   {% break %}
- {% elsif tag=='sour' %}
-   {% for tag in product.tags %}
-         {% if tag=='BA' %}
-     {%assign beertype = 'Barrel-aged Sour Ale' %}
-                 {% for tag in product.tags %}
-                     {% if tag=='feral' %}
-                         {%assign beertype = 'Barrel-aged Feral Ale' %}
-                         {% break %}
-                     {% elsif tag=='flanders golden'%}
-                         {%assign beertype = 'Barrel-aged Flanders Golden Ale' %}
-                         {% break %}
-                     {% elsif tag=='flanders red'%}
-                         {%assign beertype = 'Barrel-aged Flanders Red Ale' %}
-                         {% break %}
-                     {% elsif tag=='MT'%}
-                         {%assign beertype = 'Méthode Traditionnelle' %}
-                         {% break %}
-                     {% elsif tag=='saison'%}
-                         {%assign beertype = 'Barrel-aged Saison' %}
-                         {% break %}
-                     {% endif %} 
-                 {% endfor %}
-                 {% break %}
-     {% elsif tag=='imperial' %}
-       {%assign beertype = 'Imperial Sour Ale' %}
-               {% break %}
-     {% elsif tag=='smoothie' %}
-       {%assign beertype = 'Smoothie-style Sour Ale' %}
-               {% break %}
-     {% endif %} 
-   {% endfor %}
-   {% break %}
- {% elsif tag=='stout' %}
-   {%assign beertype = 'Imperial Stout' %}
-     {% for tag in product.tags %}
-         {% if tag=='BA' %}
-            {%assign beertype = 'Barrel-aged Imperial Stout' %}
-            {% break %}
-     {% endif %} 
-   {% endfor %}
-   {% break %}
- {% elsif tag=='kombucha' %}
-     {%assign beertype = 'Hard Kombucha' %}
- {% elsif tag=='still' or tag=='mead' %}
-     {%assign beertype = 'Barrel-aged Mead-inspired Ale' %}
-   {% endif %}
- {% endfor %}
+{% for tag in _product.tags %}
+{% if tag=='bundle' or tag=='sampler' %}
+{%assign isbundle = 1%}
+{%assign beertype = 'Mixed Pack' %}
+{% break %}
+{% elsif tag=='blonde' %}
+{%assign beertype = 'Blonde Ale' %}
+{% break %}
+{% elsif tag=='pub' %}
+{%assign beertype = 'Pub Ale' %}
+{% break %}
+{% elsif tag=='barleywine' %}
+{%assign beertype = 'Barleywine' %}
+{% break %}
+{% elsif tag=='cream' %}
+{%assign beertype = 'Cream Ale' %}
+{% break %}
+{% elsif tag=='belgian' %}
+{%assign beertype = 'Belgian-style Ale' %}
+{% break %}
+{% elsif tag=='porter' %}
+{%assign beertype = 'Porter' %}
+{% break %}
+{% elsif tag=='lager' %}
+{%assign beertype = 'Lager' %}
+{% for tag in _product.tags %}
+{% if tag=='pilsner' %}
+{%assign beertype = 'Pilsner' %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% break %}
+{% elsif tag=='IPA' %}
+{%assign beertype = 'IPA' %}
+{% for tag in _product.tags %}
+{% if tag=='west coast' %}
+{% for tag in _product.tags %}
+{% if tag=='single' %}
+{%assign beertype = 'West Coast IPA' %}
+{% break %}
+{% elsif tag=='double'%}
+{%assign beertype = 'West Coast Double IPA' %}
+{% break %}
+{% elsif tag=='triple'%}
+{%assign beertype = 'West Coast Triple IPA' %}
+{% break %}
+{% elsif tag=='quad'%}
+{%assign beertype = 'West Coast Quad IPA' %}
+{% break %}
+{% elsif tag=='quint'%}
+{%assign beertype = 'West Coast Quint IPA' %}
+{% break %}
+{% endif %}
+{% endfor %}
 
- {% for tag in product.tags %}
-   {% if tag=='bundle' or tag=='sampler' %}
-   {%assign isbundle = 1%}
+{% break %}
+{% elsif tag == 'murky IPA' %}
+{% for tag in _product.tags %}
+{% if tag=='single' %}
+{%assign beertype = 'Murky IPA' %}
+{% break %}
+{% elsif tag=='double'%}
+{%if _product.tags contains 'sour' %}
+{%assign beertype = 'Sour Double IPA' %}
+{%else%}
+{%assign beertype = 'Murky Double IPA' %}
+{% endif %}
+{% break %}
+{% elsif tag=='triple'%}
+{%assign beertype = 'Murky Triple IPA' %}
+{% break %}
+{% elsif tag=='quad'%}
+{%assign beertype = 'Murky Quad IPA' %}
+{% break %}
+{% elsif tag=='quint'%}
+{%assign beertype = 'Murky Quint IPA' %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% break %}
+{% elsif tag=='sour' %}
+{% for tag in _product.tags %}
+{% if tag=='BA' %}
+{%assign beertype = 'Barrel-aged Sour Ale' %}
+{% for tag in _product.tags %}
+{% if tag=='feral' %}
+{%assign beertype = 'Barrel-aged Feral Ale' %}
+{% break %}
+{% elsif tag=='flanders golden'%}
+{%assign beertype = 'Barrel-aged Flanders Golden Ale' %}
+{% break %}
+{% elsif tag=='flanders red'%}
+{%assign beertype = 'Barrel-aged Flanders Red Ale' %}
+{% break %}
+{% elsif tag=='MT'%}
+{%assign beertype = 'Méthode Traditionnelle' %}
+{% break %}
+{% elsif tag=='saison'%}
+{%assign beertype = 'Barrel-aged Saison' %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% break %}
+{% elsif tag=='imperial' %}
+{%assign beertype = 'Imperial Sour Ale' %}
+{% break %}
+{% elsif tag=='smoothie' %}
+{%assign beertype = 'Smoothie-style Sour Ale' %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% break %}
+{% elsif tag=='stout' %}
+{%assign beertype = 'Imperial Stout' %}
+{% for tag in _product.tags %}
+{% if tag=='BA' %}
+{%assign beertype = 'Barrel-aged Imperial Stout' %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% break %}
+{% elsif tag=='kombucha' %}
+{%assign beertype = 'Hard Kombucha' %}
+{% elsif tag=='still' or tag=='mead' %}
+{%assign beertype = 'Barrel-aged Mead-inspired Ale' %}
+{% endif %}
+{% endfor %}
+
+{% for tag in _product.tags %}
+{% if tag=='bundle' or tag=='sampler' %}
+{%assign isbundle = 1%}
 <!--     	{%assign beertype = 'Mixed Pack' %} -->
- {%elsif tag == 'pairing'%}
-   {%assign beertype = 'Beer Pairing' %}
-   {%assign ispairing = 1%}
-   {% break %}
- {%endif%}
- {%endfor%}
+{%elsif tag == 'pairing'%}
+{%assign beertype = 'Beer Pairing' %}
+{%assign ispairing = 1%}
+{% break %}
+{%endif%}
+{%endfor%}
 
- {%if isbundle==1 and ispairing != 1  %}
-   {%assign beertype = 'Mixed Pack' %}
- {%endif%}
+{%if isbundle==1 and ispairing != 1 %}
+{%assign beertype = 'Mixed Pack' %}
+{%endif%}
 
 {{beertype}}
