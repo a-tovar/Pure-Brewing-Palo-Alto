@@ -32,13 +32,13 @@
   -%}
 
 
-<section >
-  <div >
-      <div >
-        <div >
-          {{- hasBeer -}}
-          {{- hasMerch -}}
-          {{- merch_shipping_text -}}
+<section class="annoucement-banner__section">
+  <div class="announcement-banner__container">
+      <div class="announcement-banner__slanted">
+        <div class="announcement-banner__text">
+          {% comment %} {{- hasBeer -}} {% endcomment %}
+          {% comment %} {{- hasMerch -}} {% endcomment %}
+          {% comment %} {{- merch_shipping_text -}} {% endcomment %}
           {% if hasBeer == false and hasMerch %}
               {{- merch_shipping_text -}}
             {% else %}
