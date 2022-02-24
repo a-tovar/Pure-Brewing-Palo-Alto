@@ -50,7 +50,7 @@
     }
     .product-media__bottom {
       display: block;
-      height: 380px;
+      height: 420px;
       width: calc(100% + 120px);
       margin-left: -60px;
     }
@@ -105,6 +105,7 @@
       flex: 1;
       gap: 0;
       margin-right: var(--gutter);
+      align-items: flex-end;
     }
     .product__form-sticky .product__form {
       gap: 0;
@@ -238,6 +239,7 @@
           {%- case block.type -%}
             {%- when 'media' -%}
             <div class="product__additional-media desktop">
+              <!-- TODO: put in some kind of fallback/default for these ? -->
               <iframe class="product-media__video" width="560" height="315" src={{ block.settings.additional_video_url | strip_html }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               <img class="prodcut-media__image" src={{ block.settings.additional_image_url | strip_html }} alt={{ block.settings.additional_image_alt | strip_html }}>
             </div>
@@ -363,6 +365,7 @@
             {%- when 'media' -%}
               {%- comment -%} Product additional media {%- endcomment -%}
               <div class="product__additional-media mobile">
+                <!-- TODO: put in some kind of fallback/default for these ? -->
                 <iframe class="product-media__video" width="560" height="315" src={{ block.settings.additional_video_url | strip_html }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <img class="prodcut-media__image" src={{ block.settings.additional_image_url | strip_html }} alt={{ block.settings.additional_image_alt | strip_html }}>
               </div>
@@ -465,17 +468,21 @@
       {%- endunless -%}
     </div>
 
+  </div>
 </div>
 
 {%- unless section_type == 'quickview' -%}
 {%- for block in section.blocks -%}
   {%- case block.type -%}
     {%- when 'banner-bottom' -%}
+    <!-- TODO: put in settings? -->
+    <a href="https://www.purebrewing.org/story/">
       <div class="product-media__bottom image-column__image{% unless image_mobile == blank %} image-column__image--desktop{% endunless %} lazyload"
         data-bgset="{% render 'bgset', image: block.settings.desktop_bottom_image %}"
         data-parent-fit="cover"
         data-sizes="auto">
       </div>
+    </a>
   {%- endcase -%}
 {% endfor %}
 {% endunless %}

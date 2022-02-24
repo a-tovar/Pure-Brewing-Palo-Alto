@@ -129,6 +129,7 @@
       <input name="id" data-productid="{{ product.id }}" type="hidden" value="{{ current_variant.id }}" data-product-select>
     {%- endif -%}
 
+    {%- if product.tags contains 'pickup' -%}
     {%- comment -%} Shipping / pickup radios {%- endcomment -%}
     <div class="product-form__radio-div">
       <label class="product-form__radio-label" for="shipping">
@@ -198,6 +199,7 @@
         <!-- <input type="hidden" name="{{ option.name }}" value="{{ option.selected_value | escape }}" data-popout-input data-single-option-selector data-index="option{{ option.position }}" id="SingleOptionSelector-{{ index }}-{{ product_id }}" /> -->
       </div>
     </div>
+    {%- endif -%}
 
   {%- comment -%}
     Buttons
@@ -257,7 +259,9 @@
     {%- endif -%}
   </div>
 
+  {%- if product.tags contains 'beer' -%}
   <a class="shipping-faq" href="#">IMPORTANT: Shipping FAQ & Prop 65 Warning</a>
+  {%- endif -%}
 {%- endform -%}
 
 {% render 'shipping-faq-modal' %}

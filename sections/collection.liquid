@@ -1,5 +1,80 @@
 {%- comment -%} /sections/collection-template.liquid {%- endcomment -%}
 
+<style>
+  .collection__products-wrapper {
+    display: block;
+  }
+  .collection-nav {
+    min-width: 200px;
+    background-color: #f8f8f8;
+    padding: 0 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .collection-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .collection-nav .link-list {
+    display: none;
+    padding-top: 10px;
+  }
+  .collection-nav-mobile-dropdown {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding-top: 10px;
+  }
+  .collection-nav-mobile-dropdown .fa-chevron-up {
+    display: none;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .collection__products-wrapper {
+      display: flex;
+      gap: 20px;
+    }
+    .collection-nav.mobile {
+      width: 25%;
+      padding-top: 20px;
+      height: fit-content;
+    }
+    .collection__products {
+      width: 75%;
+    }
+    .collection-nav-mobile-dropdown {
+      display: none;
+    }
+    .collection-nav .link-list {
+      display: block;
+    }
+  }
+
+  @media only screen and (min-width: 1320px) {
+    .collection-nav.mobile {
+      display: none;
+    }
+    .collection-nav.desktop {
+      display: block;
+      padding: 0;
+      background-color: #fff;
+      margin-bottom: 0;
+    }
+    .collection-nav.desktop .collection__sort__options {
+      padding-bottom: 20px;
+    }
+    .collection__products-wrapper {
+      display: block;
+    }
+    .collection__products {
+      width: unset;
+    }
+  }
+</style>
+
 {%- liquid
   assign carousel = false
 
@@ -390,6 +465,40 @@
                         {%- assign sort_by = search.sort_by | default: collection.sort_by -%}
           {%- assign sort_options = search.sort_options | default: collection.sort_options -%}
 
+          {%- comment -%} Collection nav desktop (> 1320) {%- endcomment -%}
+          <div class="collection-nav desktop collection__filter">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'menu' %}
+                <button type="button" class="collection__sort__label is-expanded" aria-expanded="true" aria-controls="CollectionNav" data-collapsible-trigger>
+                  {{ linklists[block.settings.linklist].title | escape }}
+                  {%- render 'icon-plus' -%}
+                  {%- render 'icon-minus' -%}
+                </button>
+                <div class="collection__sort__option-wrapper is-expanded" id="CollectionNav" aria-hidden="false" data-collapsible-container style="height: auto;">
+                  <div class="collection__sort__options" data-collapsible-content>
+                    <ul>
+                      {%- for link in linklists[block.settings.linklist].links -%}
+                        <li><a href="{{ link.url }}" {% if link.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %} >
+                          {{ link.title | escape }}</a></li>
+                        {%- if collection.title == link.title -%}
+                        <ul style="text-indent:25px">
+                          {%- for l in link.links -%}
+                            <li><a href="{{ l.url }}" {% if l.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %}> 
+                              {{ l.title | escape }}</a></li>
+                          {%- endfor -%}
+                        </ul>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                    <noscript>
+                      <button type="submit" class="btn">{{ 'collection.filters.sort_button' | t }}</button>
+                    </noscript>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
           <div class="collection__sort">
             <button type="button" class="collection__sort__label" aria-expanded="false" aria-controls="CollectionSorting" data-collapsible-trigger>
               {{ 'collections.sorting.title' | t }}
@@ -454,64 +563,139 @@
           {%- endif -%}
         {%- endif -%}
 
-        {%- paginate collection.products by pagination_limit -%}
-          <div class="collection__products" data-collection-products>
+        <div class="collection__products-wrapper">
+          {%- comment -%} Collection nav mobile (< 1320) {%- endcomment -%}
+          <div class="collection-nav mobile">
+            <a class="collection-nav-mobile-dropdown" href="#">
+              <span>
+                Collection List 
+              </span>
+              <span>
+                <i class="fa fa-chevron-down" style="font-size: 14px;"></i>
+                <i class="fa fa-chevron-up" style="font-size: 14px;"></i>
+              </span>
+            </a>
+            {%- for block in section.blocks -%}
 
-            {%- if collection_count > 0 -%}
-              {%- if collection.products_count > 0 -%}
-                <div class="product-grid grid"{% if enable_infinity_scroll %} id="AjaxinateLoop"{% endif %}>
+              {%- if block.type == 'menu' %}
+                <nav class="link-list" {{ block.shopify_attributes }}>
+                  <h5>{{ linklists[block.settings.linklist].title | escape }}</h5>
+                  <ul>
+                    {%- for link in linklists[block.settings.linklist].links -%}
+                      <li><a href="{{ link.url }}" {% if link.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %} >
+                        {{ link.title | escape }}</a></li>
+                      {%- if collection.title == link.title -%}
+                      <ul style="text-indent:25px">
+                        {%- for l in link.links -%}
+                          <li><a href="{{ l.url }}" {% if l.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %}> 
+                            {{ l.title | escape }}</a></li>
+                        {%- endfor -%}
+                      </ul>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                </nav>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
 
-                  {%- for product in collection.products -%}
-                    {%- render 'product-grid-item', product: product -%}
-                  {%- endfor -%}
-
-                </div>
-              {%- else -%}
+          {%- paginate collection.products by pagination_limit -%}
+            <div class="collection__products" data-collection-products>
+  
+              {%- if collection_count > 0 -%}
+                {%- if collection.products_count > 0 -%}
+                  <div class="product-grid grid"{% if enable_infinity_scroll %} id="AjaxinateLoop"{% endif %}>
+  
+                    {%- for product in collection.products -%}
+                      {%- render 'product-grid-item', product: product -%}
+                    {%- endfor -%}
+  
+                  </div>
+                {%- else -%}
+                  <div class="collection--no-results">
+                    <p class="no-matches">{{ 'collections.general.no_matches_by_filter' | t : products_count: collection.products_count }}</p>
+                    {%- if enable_filters and filter_tags != blank -%}
+                      <div class="collection__filters-reset">
+                        <button class="collection__filters__reset btn btn--{{ section.settings.button_style }}{% if current_tags != blank %} is-visible{% endif %}" data-reset-filters>
+                          {{ 'products.general.reset' | t }}
+                          <span data-selected-filters-count>({{ current_tags | size }})</span>
+                        </button>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- elsif collection.handle != 'all' and collection_count == 0 -%}
                 <div class="collection--no-results">
-                  <p class="no-matches">{{ 'collections.general.no_matches_by_filter' | t : products_count: collection.products_count }}</p>
-                  {%- if enable_filters and filter_tags != blank -%}
-                    <div class="collection__filters-reset">
-                      <button class="collection__filters__reset btn btn--{{ section.settings.button_style }}{% if current_tags != blank %} is-visible{% endif %}" data-reset-filters>
-                        {{ 'products.general.reset' | t }}
-                        <span data-selected-filters-count>({{ current_tags | size }})</span>
-                      </button>
+                  <p class="no-matches">{{ 'collections.general.no_matches' | t }}</p>
+                  <a href="{{ routes.root_url }}" class="btn" >{{ 'general.404.button_text' | t }}</a>
+                </div>
+              {%- endif -%}
+  
+              {%- if enable_infinity_scroll -%}
+                <div class="pagination pagination--infinite" id="AjaxinatePagination">
+                  {%- if paginate.next -%}
+                    <div class="pagination__loading">
+                      <a href="{{ paginate.next.url }}">{{ 'collections.pagination.loading' | t }}<span class="dots dots--animated"><span>.</span><span>.</span><span>.</span></span></a>
                     </div>
                   {%- endif -%}
                 </div>
-              {%- endif -%}
-            {%- elsif collection.handle != 'all' and collection_count == 0 -%}
-              <div class="collection--no-results">
-                <p class="no-matches">{{ 'collections.general.no_matches' | t }}</p>
-                <a href="{{ routes.root_url }}" class="btn" >{{ 'general.404.button_text' | t }}</a>
-              </div>
-            {%- endif -%}
-
-            {%- if enable_infinity_scroll -%}
-              <div class="pagination pagination--infinite" id="AjaxinatePagination">
-                {%- if paginate.next -%}
-                  <div class="pagination__loading">
-                    <a href="{{ paginate.next.url }}">{{ 'collections.pagination.loading' | t }}<span class="dots dots--animated"><span>.</span><span>.</span><span>.</span></span></a>
-                  </div>
+  
+                {%- if paginate.pages > 1 -%}
+                  <noscript>
+                    {%- render 'pagination', paginate: paginate -%}
+                  </noscript>
                 {%- endif -%}
-              </div>
-
-              {%- if paginate.pages > 1 -%}
-                <noscript>
+              {%- else -%}
+                {%- if paginate.pages > 1 -%}
                   {%- render 'pagination', paginate: paginate -%}
-                </noscript>
+                {%- endif -%}
               {%- endif -%}
-            {%- else -%}
-              {%- if paginate.pages > 1 -%}
-                {%- render 'pagination', paginate: paginate -%}
-              {%- endif -%}
-            {%- endif -%}
-          </div>
-
-        {%- endpaginate -%}
+            </div>
+  
+          {%- endpaginate -%}
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<script type="application/javascript">
+  $(function(){
+    // Mobile collection nav dropdown
+    const collectionNavDropdown = $('.collection-nav-mobile-dropdown');
+    const collectionNav = $('.collection-nav .link-list');
+    collectionNavDropdown.on('click', (e) => {
+      e.preventDefault();
+      if (collectionNavDropdown.hasClass('active')) {
+        collectionNavDropdown.removeClass('active');
+        collectionNav.slideUp('fast');
+        $('.collection-nav-mobile-dropdown .fa-chevron-down').css('display', 'block');
+        $('.collection-nav-mobile-dropdown .fa-chevron-up').css('display', 'none');
+      }
+      else {
+        collectionNavDropdown.addClass('active');
+        collectionNav.slideDown('fast');
+        $('.collection-nav-mobile-dropdown .fa-chevron-down').css('display', 'none');
+        $('.collection-nav-mobile-dropdown .fa-chevron-up').css('display', 'block');
+      }
+    });
+
+    let previousWidth = $(document).width();
+    $(window).resize(function() {
+      let windowWidth = $(document).width();
+      if (windowWidth > 1023) {
+        collectionNav.css('display', 'block');
+      }
+      else if (previousWidth > windowWidth && windowWidth < 1024) {
+        collectionNav.css('display', 'none');
+        collectionNavDropdown.removeClass('active');
+        $('.collection-nav-mobile-dropdown .fa-chevron-down').css('display', 'block');
+        $('.collection-nav-mobile-dropdown .fa-chevron-up').css('display', 'none');
+      }
+      previousWidth = $(document).width();
+    });
+  });
+</script>
 
 {% schema %}
   {
@@ -564,6 +748,20 @@
         "type": "color",
         "id": "bg_color",
         "label": "Background"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "menu",
+        "name": "Sidebar menu",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "linklist",
+            "label": "Menu",
+            "default": "main-menu"
+          }
+        ]
       }
     ]
   }
