@@ -274,9 +274,12 @@
     $('input[type=radio][name=delivery]').change(function() {
       if (this.value == 'shipping') {
         $('#product-location-selector').first().slideUp('fast');
+        $('.product-form__buttons-grid').css('display', 'grid');
       }
       else if (this.value == 'pickup') {
         $('#product-location-selector').first().slideDown('fast');
+        // hide ATC buttons
+        $('.product-form__buttons-grid').css('display', 'none');
       }
     });
 
