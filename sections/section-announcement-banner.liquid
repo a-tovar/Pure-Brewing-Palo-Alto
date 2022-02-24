@@ -1,0 +1,100 @@
+
+{%- style -%}
+#shopify-section-announcement-bar {
+  background: {{ section.settings.bg_color }};
+  color: {{ section.settings.text_color }};
+}
+{%- endstyle -%}
+
+{%- liquid 
+  assign show_shipping_message = section.settings.show_shipping_message
+  assign beer_shipping_text = section.settings.beer_shipping_text
+  assign merch_shipping_text = section.settings.merch_shipping_text
+
+  assign show_announcement_info = section.settings.show_announcement_info
+  assign announcement_info_text = section.settings.announcement_info_text
+
+  assign hasBeer = false
+  assign hasMerch = false
+  for item in cart.items
+    if item.product.type=='Beer'
+      assign hasBeer = true
+    else
+      assign hasMerch = true
+    endif
+  endfor
+  if hasBeer == false and hasMerch
+    assign shipping_message_text = merch_shipping_text
+  else
+    assign shipping_message_text = beer_shipping_text
+  endif
+  
+  -%}
+
+
+<section >
+  <div >
+      <div >
+        <div >
+          {{- hasBeer -}}
+          {{- hasMerch -}}
+          {{- merch_shipping_text -}}
+          {% if hasBeer == false and hasMerch %}
+              {{- merch_shipping_text -}}
+            {% else %}
+              {{- beer_shipping_text -}}
+            {% endif %}
+            </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+{% schema %}
+{
+    "name": "Announcement Banner",
+    "class": "rich-text transparent-header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_shipping_info",
+        "label": "Show Shipping Info",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "beer_shipping_text",
+        "label": "Beer Shipping Text",
+        "default": "Shipping INCLUDED for Beer Orders Over $200!"
+      },
+      {
+        "type": "text",
+        "id": "merch_shipping_text",
+        "label": "Merch Shipping Text",
+        "default": "Shipping FREE for Merchandise Orders Over $50!"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_announcement_info",
+        "label": "Show Announcement Info",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Announcement Banner",
+        "category": "Text"
+      }
+    ]
+}
+{% endschema %}
