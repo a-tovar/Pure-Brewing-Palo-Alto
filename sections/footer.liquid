@@ -64,6 +64,7 @@
 								<ul class="footer-links"{% if show_title %} data-collapsible-content-mobile aria-expanded="false"{% endif %}>
 									{%- for link in menu_links -%}
 										<li><a class="footer-link" href="{{ link.url }}">{{ link.title }}</a></li>
+										{% if forloop.last == false %}&nbsp;&nbsp; • &nbsp;&nbsp;{% endif %}
 									{%- endfor -%}
 								</ul>
 							</div>
