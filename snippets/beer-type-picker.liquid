@@ -26,7 +26,7 @@
    {% break %}
  {% elsif tag=='lager' %}
    {%assign beertype = 'Lager' %}
-   {% for tag in product.tags %}
+   {% for tag in _product.tags %}
      {% if tag=='pilsner' %}
              {%assign beertype = 'Pilsner' %}
        {% break %}
@@ -35,9 +35,9 @@
    {% break %}
  {% elsif tag=='IPA' %}
  {%assign beertype = 'IPA' %}
-     {% for tag in product.tags %}
+     {% for tag in _product.tags %}
      {% if tag=='west coast' %}
-       {% for tag in product.tags %}
+       {% for tag in _product.tags %}
                    {% if tag=='single' %}
                        {%assign beertype = 'West Coast IPA' %}
                        {% break %}
@@ -58,12 +58,12 @@
          
        {% break %}
      {% elsif tag == 'murky IPA' %}
-       {% for tag in product.tags %}
+       {% for tag in _product.tags %}
                    {% if tag=='single' %}
                        {%assign beertype = 'Murky IPA' %}
                        {% break %}
          {% elsif tag=='double'%}
-           {%if product.tags contains 'sour' %}
+           {%if _product.tags contains 'sour' %}
              {%assign beertype = 'Sour Double IPA' %}
            {%else%}
              {%assign beertype = 'Murky Double IPA' %}
@@ -85,10 +85,10 @@
    {% endfor %}
    {% break %}
  {% elsif tag=='sour' %}
-   {% for tag in product.tags %}
+   {% for tag in _product.tags %}
          {% if tag=='BA' %}
      {%assign beertype = 'Barrel-aged Sour Ale' %}
-                 {% for tag in product.tags %}
+                 {% for tag in _product.tags %}
                      {% if tag=='feral' %}
                          {%assign beertype = 'Barrel-aged Feral Ale' %}
                          {% break %}
@@ -118,7 +118,7 @@
    {% break %}
  {% elsif tag=='stout' %}
    {%assign beertype = 'Imperial Stout' %}
-     {% for tag in product.tags %}
+     {% for tag in _product.tags %}
          {% if tag=='BA' %}
             {%assign beertype = 'Barrel-aged Imperial Stout' %}
             {% break %}
@@ -132,7 +132,7 @@
    {% endif %}
  {% endfor %}
 
- {% for tag in product.tags %}
+ {% for tag in _product.tags %}
    {% if tag=='bundle' or tag=='sampler' %}
    {%assign isbundle = 1%}
 <!--     	{%assign beertype = 'Mixed Pack' %} -->
