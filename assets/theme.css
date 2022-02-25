@@ -386,6 +386,9 @@ select::-ms-expand {
     display: none !important;
   }
 }
+body {
+  overflow-x: hidden;
+}
 body:not(.no-outline) .skip-link:focus {
   clip: auto;
   width: auto;
@@ -6360,7 +6363,7 @@ button.mfp-close {
 }
 .collection-section {
   position: relative;
-  padding: var(--gutter) 0;
+  padding-bottom: var(--gutter);
 }
 .collection__wrapper {
   position: relative;
@@ -6769,7 +6772,7 @@ button.mfp-close {
   display: flex;
   flex-direction: row-reverse;
   background: var(--bg);
-  margin-top: -20px;
+  /* margin-top: -20px; */
 }
 @media only screen and (min-width: 1320px) {
   .collection__sticky-bar {
