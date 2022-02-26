@@ -8,6 +8,7 @@
     color: grey;
     text-decoration: underline;
     font-size: 1.02rem;
+    width: max-content;
   }
 </style>
 
@@ -167,17 +168,10 @@
         </button>
         <!-- TODO: why aren't the links working? -->
         <ul id="option-list" class="popout-list popout-list-option popout-list--product" data-popout-list>
-          {% if hasMiramar == 1 %}
-          <li class="popout-list__item" data-popout-item>
-            <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project/v3/?mode=fulfillment" target="_blank" data-value="miramar" data-popout-option>
-              <span>Miramar</span>
-            </a>
-          </li>
-          {% endif %}
           {% if hasBalboa == 1 %}
           <li class="popout-list__item" data-popout-item>
             <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project-bankers-hill/v3/?mode=fulfillment" target="_blank" data-value="balboa" data-popout-option>
-              <span>Balboa</span>
+              <span>Balboa Park</span>
             </a>
           </li>
           {% endif %}
@@ -185,6 +179,13 @@
           <li class="popout-list__item" data-popout-item>
             <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project-carlsbad/v3/?mode=fulfillment" target="_blank" data-value="carlsbad" data-popout-option>
               <span>Carlsbad</span>
+            </a>
+          </li>
+          {% endif %}
+          {% if hasMiramar == 1 %}
+          <li class="popout-list__item" data-popout-item>
+            <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project/v3/?mode=fulfillment" target="_blank" data-value="miramar" data-popout-option>
+              <span>Miramar</span>
             </a>
           </li>
           {% endif %}
