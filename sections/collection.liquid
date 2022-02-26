@@ -105,6 +105,7 @@
     endfor
   endif
 
+  assign enable_nav = section.settings.enable_nav
   assign enable_sorting = section.settings.enable_sorting
   assign enable_infinity_scroll = settings.enable_infinity_scroll
   assign pagination_limit = settings.products_per_row_on_desktop | times: 12
@@ -145,7 +146,7 @@
     <div class="wrapper wrapper--full">
       <div class="collection__inner">
 
-        {%- if show_breadcrumbs or enable_filters or enable_sorting -%}
+        {%- if show_breadcrumbs or enable_filters or enable_sorting or enable_nav -%}
           <div class="collection__sticky-bar" id="CollectionStickyBar" data-collection-sticky-bar>
             {%- if enable_filters or enable_sorting -%}
               <button class="collection__filters__toggle" aria-label="{{ 'products.general.filters' | t }}" data-toggle-filters>
@@ -158,7 +159,7 @@
             {%- endif -%}
           </div>
 
-          {%- if enable_filters or enable_sorting -%}
+          {%- if enable_filters or enable_sorting or enable_nav -%}
             {%- liquid
   assign file_extension = 'png'
   assign filters_available = false
@@ -447,7 +448,7 @@
   {%- endif -%}
 {%- endcapture -%}
 
-{%- if enable_sorting or enable_filters -%}
+{%- if enable_sorting or enable_filters or enable_nav -%}
   <div class="collection__filters" data-collection-filters>
     <div class="collection__filters-wrapper" data-collection-filters-wrapper>
       <div class="collection__filters-list" data-collection-filters-list>
@@ -461,9 +462,9 @@
           </div>
 
           <form data-collection-filters-form>
-            {%- if enable_sorting -%}
-                        {%- assign sort_by = search.sort_by | default: collection.sort_by -%}
-          {%- assign sort_options = search.sort_options | default: collection.sort_options -%}
+            {%- if enable_sorting or enable_nav -%}
+              {%- assign sort_by = search.sort_by | default: collection.sort_by -%}
+              {%- assign sort_options = search.sort_options | default: collection.sort_options -%}
 
           {%- comment -%} Collection nav desktop (> 1320) {%- endcomment -%}
           <div class="collection-nav desktop collection__filter">
@@ -499,6 +500,7 @@
             {%- endfor -%}
           </div>
 
+          {%- if enable_sorting -%}
           <div class="collection__sort">
             <button type="button" class="collection__sort__label" aria-expanded="false" aria-controls="CollectionSorting" data-collapsible-trigger>
               {{ 'collections.sorting.title' | t }}
@@ -525,7 +527,8 @@
               </div>
             </div>
           </div>
-            {%- endif -%}
+          {%- endif -%}
+          {%- endif -%}
 
             {%- if enable_filters -%}
               {%- if filters_available -%}
@@ -715,6 +718,12 @@
       {
         "type": "header",
         "content": "Filters and sorting"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_nav",
+        "label": "Enable Collection Nav",
+        "default": true
       },
       {
         "type": "checkbox",
