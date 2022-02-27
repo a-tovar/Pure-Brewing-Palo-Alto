@@ -2281,7 +2281,7 @@ html {
 .main-content {
   display: block;
   overflow: initial;
-  min-height: var(--content-min);
+  /* min-height: var(--content-min); */
 }
 .has-transparent-header .main-content {
   padding-top: 0;
