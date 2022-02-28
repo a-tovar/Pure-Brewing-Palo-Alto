@@ -47,8 +47,8 @@
     Buttons
   {%- endcomment -%}
   <div class="product-form__buttons-grid buttons-grid{% if show_payment_button %} buttons-grid--half{% endif %}">
-  <div class="product-form__btn-container">
-    {%- if settings.show_quantity -%}
+  <div class="product-form__btn-container {% if sold_out %} product-form__btn-container-disabled {% endif %}">
+    {%- if settings.show_quantity and sold_out == false -%}
         {%- comment -%}
           Quantity Selector
         {%- endcomment -%}
@@ -77,7 +77,7 @@
         <input type="hidden" name="quantity" value="1">
       {%- endif -%}
       {%- comment -%} END QUANTITY {%- endcomment -%}
-    <button type="submit" name="add" id="AddToCart--{{ unique }}" class="product-form__submit-btn btn btn--submit"{% if sold_out %} disabled{% endif %} data-add-to-cart>
+    <button type="submit" name="add" id="AddToCart--{{ unique }}" class="product-form__submit-btn btn btn--submit"{% if sold_out %} disabled {% endif %} data-add-to-cart>
       <span id="AddToCartText" class="product-form__submit-text" data-add-to-cart-text>
         {%- if sold_out -%}
           {{- 'products.product.sold_out' | t -}}
@@ -87,8 +87,10 @@
           {{- 'products.product.add_to_cart' | t -}}
         {%- endif -%}
       </span>
+      {%- if sold_out == false -%}
       <span class="product-form__submit-divider"></span>
       <span class="product-form__submit-price">{{ current_variant.price | money }}</span>
+      {%- endif -%}
       {%- render 'icon-loading' -%}
     </button>
   </div>
