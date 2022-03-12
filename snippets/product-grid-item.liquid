@@ -209,7 +209,9 @@ assign featured_media = product.featured_media
       </a>
 
       {%- comment -%} Beer Type {%- endcomment -%}
+      {% if product.type == 'Beer' %}
       {% render 'beer-type-picker', _product: product %}
+      {% endif %}
 
       {% comment %} Price {% endcomment %}
       <a class="product-grid-item__price price" href="{{ product.url | within: collection }}">

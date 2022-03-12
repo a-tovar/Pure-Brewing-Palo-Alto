@@ -6137,7 +6137,7 @@ button.mfp-close {
   border: none;
   width: 100%;
   margin-left: 0;
-  border-radius: 3px;
+  border-radius: var(---radius);
 }
 #CartContainer .cart__row--buttons {
   margin-top: 20px;
@@ -11838,7 +11838,7 @@ input[type="radio"].variant-input {
 .product-form__submit-btn:disabled {
   background-color: #c43e20;
   color: #ffffff;
-  border-radius: 3px;
+  border-radius: var(---radius);
   justify-content: center !important;
 }
 .product-form__submit-btn:disabled:hover {
