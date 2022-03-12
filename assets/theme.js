@@ -176,7 +176,7 @@ var ajaxCart = (function(module, $) {
   var init, loadCart, destroy;
 
   // Private general variables
-  var settings, isUpdating;
+  var settings, isUpdating, hasBeer;
 
   // Private plugin variables
   var $formContainer, $formContainer2, $addToCart, $addToCart2, $cartContainer, $drawerContainer;
@@ -420,6 +420,7 @@ var ajaxCart = (function(module, $) {
     var data = {};
     var errors = '';
     var source = $("#CartTemplate").html();
+    hasBeer = false;
 
     // Add each item to our squirrelly.js data
     $.each(cart.items, function(index, cartItem) {
@@ -438,6 +439,11 @@ var ajaxCart = (function(module, $) {
         var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_120x120$1").replace('http:', '');
       } else {
         var prodImg = "//cdn.shopify.com/s/assets/admin/no-image-medium-cc9732cb976dd349a0df1d39816fbcc7.gif";
+      }
+
+      // Check for beer in cart to show DOB modal
+      if (cartItem.product_type == 'Beer') {
+        hasBeer = true;
       }
 
       // Discounts
@@ -632,10 +638,46 @@ var ajaxCart = (function(module, $) {
     });
 
     // Prevent cart from being submitted while quantities are changing
-
     $cartContainer.on( 'submit' + namespace, 'form.ajaxcart', function(evt) {
       if (isUpdating) {
         evt.preventDefault();
+      }
+      // If beer in cart, show DOB modal
+      if (hasBeer) {
+        evt.preventDefault();
+        $('#age-check-modal').fadeIn('fast');
+      }
+    });
+
+    // Age check on modal submit
+    function ageCheck() {
+      var error = document.getElementById("dob-error");
+      // Set the minimum age.
+      var min_age = 21; 
+      var year =   parseInt(document.getElementById('byear').value);
+      var month =  parseInt(document.getElementById('bmonth').value);
+      var day =    parseInt(document.getElementById('bday').value);
+      // add age to their birthday and compare with today.
+      var theirDate = new Date((year + min_age), month, day);
+      var today = new Date;
+      if ((today.getTime() - theirDate.getTime()) > 0) {
+        // window.location = 'https://shop.purebrewing.org/cart'; //enter domain url where you would like the underaged visitor to be sent to.
+        error.style.display = "none";
+        return true;
+      } else {
+        error.style.display = "block";
+        return false;
+      };
+    };
+
+    $('#ageSubmit').on('click', () => {
+      var isValidDate = ageCheck();
+      if(!isValidDate) {
+        // alert("IMPORTANT:  You must be 21 to purchase from Pure Project. ");
+        e.preventDefault();
+      } else {
+        hasBeer = false;
+        $('#CartContainer .drawer__button').trigger('click');
       }
     });
 
