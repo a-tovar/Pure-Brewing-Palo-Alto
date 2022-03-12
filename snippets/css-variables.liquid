@@ -120,7 +120,7 @@
   endcomment
 
   assign color_button_primary_bg = settings.color_button_primary
-  assign color_button_primary_text = '#fff'
+  assign color_button_primary_text = '#000'
   assign color_button_primary_brightness = color_button_primary_bg | color_brightness | round
   if color_button_primary_brightness > 180
     assign color_button_primary_text = '#000'
@@ -142,7 +142,7 @@
     when 'square'
       assign border_radius = 0
     when 'rounded'
-      assign border_radius = 8
+      assign border_radius = 3
     when 'pill'
       assign border_radius = 27
   endcase

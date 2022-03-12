@@ -176,10 +176,10 @@ var ajaxCart = (function(module, $) {
   var init, loadCart, destroy;
 
   // Private general variables
-  var settings, isUpdating;
+  var settings, isUpdating, hasBeer;
 
   // Private plugin variables
-  var $formContainer, $addToCart, $cartContainer, $drawerContainer;
+  var $formContainer, $formContainer2, $addToCart, $addToCart2, $cartContainer, $drawerContainer;
 
   // Private functions
   var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, freeShippingMessageHandle, cartUpdateCallback, buildCart, cartCallback, cartAcceptanceCallback, adjustCart, adjustCartCallback, qtySelectors, validateQty, trapFocus, observeAdditionalCheckoutButtons;
@@ -210,8 +210,10 @@ var ajaxCart = (function(module, $) {
 
     // Select DOM elements
     $formContainer     = $(settings.formSelector);
+    $formContainer2    = $('.product__form-sticky form[action^="/cart/add"]');
     $cartContainer     = $(settings.cartContainer);
     $addToCart         = $formContainer.find(settings.addToCartSelector);
+    $addToCart2        = $formContainer2.find(settings.addToCartSelector);
 
     // Override namespace
     namespace = settings.namespace;
@@ -256,6 +258,52 @@ var ajaxCart = (function(module, $) {
 
   formOverride = function () {
     $formContainer.on('submit', function(evt) {
+      evt.preventDefault();
+
+      var $currentForm = $(evt.target);
+      var $qtyInput = $currentForm.find('[data-quantity-input]');
+      var qty = $qtyInput.val();
+      var $submitButton = $(this).find( '[data-add-to-cart]' );
+
+      // Prevent multiple form submits
+      if ( $submitButton.hasClass( 'is-adding') ) return;
+
+      // Prevent adding a product with zero quantity or it's currently loading
+      if ( qty < 1 ) {
+        $qtyInput.addClass( 'field-error' )
+
+        $currentForm.find( '.errors' ).remove();
+        $currentForm.find( '.variants-wrapper' ).after( '<div class="errors qty-error">' + theme.strings.zero_qty_error + '</div>' );
+
+        // Clear hide errors timeout
+        if ( hideErrors ) clearTimeout( hideErrors );
+
+        hideErrors = setTimeout( function() {
+          $currentForm.find( '.errors' ).fadeOut(function() {
+            $qtyInput.removeClass( 'field-error' );
+            $currentForm.find( '.errors' ).remove();
+          });
+        }, 3000);
+
+        return;
+      } else {
+        $qtyInput.removeClass( 'field-error' );
+        $currentForm.find( '.errors' ).remove();
+      }
+
+      // Add class to be styled if desired
+      $submitButton
+        .removeClass( 'is-added' )
+        .addClass( 'is-adding' )
+        .attr( 'disabled', true );
+
+      // Remove any previous quantity errors
+      $currentForm.find( '.errors' ).remove();
+
+      ShopifyAPI.addItemFromForm(evt.target, itemAddedCallback, itemErrorCallback);
+    });
+
+    $formContainer2.on('submit', function(evt) {
       evt.preventDefault();
 
       var $currentForm = $(evt.target);
@@ -372,6 +420,7 @@ var ajaxCart = (function(module, $) {
     var data = {};
     var errors = '';
     var source = $("#CartTemplate").html();
+    hasBeer = false;
 
     // Add each item to our squirrelly.js data
     $.each(cart.items, function(index, cartItem) {
@@ -390,6 +439,11 @@ var ajaxCart = (function(module, $) {
         var prodImg = cartItem.image.replace(/(\.[^.]*)$/, "_120x120$1").replace('http:', '');
       } else {
         var prodImg = "//cdn.shopify.com/s/assets/admin/no-image-medium-cc9732cb976dd349a0df1d39816fbcc7.gif";
+      }
+
+      // Check for beer in cart to show DOB modal
+      if (cartItem.product_type == 'Beer') {
+        hasBeer = true;
       }
 
       // Discounts
@@ -584,10 +638,46 @@ var ajaxCart = (function(module, $) {
     });
 
     // Prevent cart from being submitted while quantities are changing
-
     $cartContainer.on( 'submit' + namespace, 'form.ajaxcart', function(evt) {
       if (isUpdating) {
         evt.preventDefault();
+      }
+      // If beer in cart, show DOB modal
+      if (hasBeer) {
+        evt.preventDefault();
+        $('#age-check-modal').fadeIn('fast');
+      }
+    });
+
+    // Age check on modal submit
+    function ageCheck() {
+      var error = document.getElementById("dob-error");
+      // Set the minimum age.
+      var min_age = 21; 
+      var year =   parseInt(document.getElementById('byear').value);
+      var month =  parseInt(document.getElementById('bmonth').value);
+      var day =    parseInt(document.getElementById('bday').value);
+      // add age to their birthday and compare with today.
+      var theirDate = new Date((year + min_age), month, day);
+      var today = new Date;
+      if ((today.getTime() - theirDate.getTime()) > 0) {
+        // window.location = 'https://shop.purebrewing.org/cart'; //enter domain url where you would like the underaged visitor to be sent to.
+        error.style.display = "none";
+        return true;
+      } else {
+        error.style.display = "block";
+        return false;
+      };
+    };
+
+    $('#ageSubmit').on('click', () => {
+      var isValidDate = ageCheck();
+      if(!isValidDate) {
+        // alert("IMPORTANT:  You must be 21 to purchase from Pure Project. ");
+        e.preventDefault();
+      } else {
+        hasBeer = false;
+        $('#CartContainer .drawer__button').trigger('click');
       }
     });
 

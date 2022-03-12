@@ -193,63 +193,17 @@ You must be 21+ to checkout with the items in your cart
 </div>
 
 <script>
-   
- var submitBtn = document.getElementById("ageSubmit"); 
-  
- var error = document.getElementById("dob-error");
- 
- 
-function ageCheck() {
-
-  // Set the minimum age.
-  var min_age = {{ min_age }}; 
-  var year =   parseInt(document.getElementById('byear').value);
-  var month =  parseInt(document.getElementById('bmonth').value);
-  var day =    parseInt(document.getElementById('bday').value);
-//   console.log(year);
-//   console.log(day);
-//   console.log(month);
-  // add age to their birthday and compare with today.
-  var theirDate = new Date((year + min_age), month, day);
-  var today = new Date;
-  console.log(today.getTime());
-  console.log(theirDate.getTime());
-  console.log(today.getTime() - theirDate.getTime());
-  if ((today.getTime() - theirDate.getTime()) > 0) {
-    // window.location = 'https://shop.purebrewing.org/cart'; //enter domain url where you would like the underaged visitor to be sent to.
-    error.style.display = "none";
-    return true;
-  } else {
-    error.style.display = "block";
-    return false;
-  };
-};
-   
-submitBtn.onclick = function(e){
- 	var isValidDate = ageCheck();
-  if(!isValidDate) {
-    // alert("IMPORTANT:  You must be 21 to purchase from Pure Project. ");
-    e.preventDefault();
-  }
-}
-</script>
-
-<script>
-  // Get the modal
-  var modal = document.getElementById("age-check-modal");
-
-  // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
+  $(function() {
+		const modal = $("#age-check-modal");
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == document.getElementById('age-check-modal')) {
+				modal.css('display', 'none');
+        $('#dob-error').text('');
+        $('#bmonth').val('');
+        $('#bday').val('');
+        $('#byear').val('');
+			}
+		}
+	});
 </script>

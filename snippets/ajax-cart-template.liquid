@@ -106,7 +106,7 @@
 		{{/each}}
 	{% endraw %}
 		<div class="ajaxcart__footer-row">
-			<h4 class="price price--label">{{ 'cart.general.subtotal' | t }}</h4>
+			<h4 class="price price--label">{{ 'cart.general.subtotal' | t | upcase }}</h4>
 			<div class="text-right price price--amount">
 				{% raw %}
 				<h4 class="price">{{* it.totalPrice}}</h4>
@@ -173,29 +173,10 @@
 </div>
 {% endraw %}
 </script>
-<style>#AjaxifyCart .additional-checkout-buttons,#ajaxifyCart .additional-checkout-buttons {display:none;}</style>
+<style>
+	#AjaxifyCart .additional-checkout-buttons,
+	#ajaxifyCart .additional-checkout-buttons {
+		display: none;
+	}
 
-<script>
-	// Get the age check modal
-  var modal = document.getElementById("age-check-modal");
-	// Get the button that opens the modal
-  // var checkoutBtn = document.getElementsByClassName("cart__checkout-test")[0];
-  var checkoutBtn = $(".cart__checkout-test");
-	checkoutBtn.css("border", "13px solid red");
-	console.log('BTN: ' + checkoutBtn);
-  // When the user clicks on the button, open the modal
-	checkoutBtn.on('click', () => {
-		print('SHOWING MODAL');
-		e.preventDefault();
-	})
-  // checkoutBtn.onclick = function(e) {
-	// 	print('SHOWING MODAL');
-	// 	e.preventDefault();
-  //   // var hasBeer = {{ hasBeer | json}};
-  //   let hasBeer = true;
-  //   if(hasBeer) {
-  //     modal.style.display = "block";
-  //   	e.preventDefault();
-  //   }
-  // }
-</script>
+</style>
