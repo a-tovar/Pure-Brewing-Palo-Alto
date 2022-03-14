@@ -422,6 +422,8 @@ var ajaxCart = (function(module, $) {
     var source = $("#CartTemplate").html();
     hasBeer = false;
 
+    $('.cart-beer-faq').css('display', 'none');
+
     // Add each item to our squirrelly.js data
     $.each(cart.items, function(index, cartItem) {
       var itemDiscounts = [];
@@ -444,6 +446,7 @@ var ajaxCart = (function(module, $) {
       // Check for beer in cart to show DOB modal
       if (cartItem.product_type == 'Beer') {
         hasBeer = true;
+        $('.cart-beer-faq').css('display', 'block');
       }
 
       // Discounts
