@@ -32,7 +32,7 @@
   }
   .shipping-close {
     position: absolute;
-    top: 0;
+    top: 3px;
     right: 6px;
     border-radius: 50%;
     margin: 4px 2px;
@@ -57,27 +57,7 @@
       <a href="#" class="close shipping-close">&times;</a>
     </div>
 
-    <div id="faq_content">
-      <p><b>IMPORTANT: </b><span style="font-weight: 400;">Please read all of the information below for merchandise and beer shipping information.</span></p>
-      <br/>
-      <p><b>*You must be 21 or older to purchase beer and someone 21 or older must be available to sign for the package. No exceptions and you cannot give your ID to someone underage to sign.</b></p>
-      <br/>
-      <p><b>Q: Where do you ship?</b></p>
-      <p><span style="font-weight: 400;">A: Currently we only ship beer within California and to metropolitan areas of Nevada. We do NOT ship BEER outside of the state of California or Nevada. We DO ship merchandise to all states within the US.</span></p>
-      <br/>
-      <p><b>Q: How does the shipping work?</b></p>
-      <p><span style="font-weight: 400;">A: We ship beer on Mondays and Thursdays of each week for overnight delivery. For example, if you place an order on Friday, it will ship the following Monday for Tuesday deliver. Packages will be shipped "next day" freight and MUST be signed for by someone over 21 years of age (you cannot leave your ID with a minor). Merchandise usually ships within two (2) business days. </span></p>
-      <br/>
-      <p><b>Q: How much does shipping cost?</b></p>
-      <p><span style="font-weight: 400;">A: <b>Beer:</b> $15 flat rate for all beer orders under $200. For orders over $200, shipping is included. 
-      <br>
-      <b>Merchandise:</b> Free for orders over $50! For orders under $50, the shipping costs are calculated using the standard USPS rates. </span></p>
-      <br/>
-      <p><b>Q: What beers can I buy and when?</b></p>
-      <p><span style="font-weight: 400;">A: We are a small brewery, so our availability and date of beer sales will vary. To get updates on when and what the next sale will be, please sign up for our <a href="https://www.purebrewing.org/list-opt-in/" target="_blank">email and/or text notifications here</a>.<br>
-      <br/><br/>
-      <b>PROP 65 WARNING:</b><br>Drinking distilled spirits, beer, coolers, wine and other alcoholic beverages may increase cancer risk, and, during pregnancy, can cause birth defects.  For more information go to <a href="https://www.p65warnings.ca.gov/products/alcoholic-beverages" target="_blank">www.P65Warnings.ca.gov/alcohol</a>.
-    </div>
+    {{ pages.faq.content }}
   </div>
 </div>
 
@@ -96,10 +76,10 @@
     });
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == document.getElementById('shipping-faq-modal')) {
+    $(window).click(function(event) {
+      if (event.target== modal) {
         modal.css('display', 'none');
       }
-    }
+    });
   });
 </script>
