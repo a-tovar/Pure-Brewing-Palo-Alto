@@ -124,15 +124,47 @@
 						{%- endif -%}
 						{%- render 'footer-newsletter' -%}
 					</div>
+					{%- if section.settings.show_social_links -%}
+						{%- render 'footer-social' -%}
+					{%- endif -%}
 
+				{%- when 'badges' -%}
+					<div class="footer-badges">
+						{% if block.settings.image_badge_1 %}
+						<img class="lazyload footer-img"
+							src="{{ block.settings.image_badge_1 | img_url: '200x200' }}"
+							alt="image-badge">
+						{% endif %}
+						{% if block.settings.image_badge_2 %}
+						<img class="lazyload footer-img"
+							src="{{ block.settings.image_badge_2 | img_url: '200x200' }}"
+							alt="image-badge">
+						{% endif %}
+						{% if block.settings.image_badge_3 %}
+						<img class="lazyload footer-img"
+							src="{{ block.settings.image_badge_3 | img_url: '200x200' }}"
+							alt="image-badge">
+						{% endif %}
+						{% if block.settings.image_badge_4 %}
+						<img class="lazyload footer-img"
+							src="{{ block.settings.image_badge_4 | img_url: '200x200' }}"
+							alt="image-badge">
+						{% endif %}
+						{% if block.settings.image_badge_5 %}
+						<img class="lazyload footer-img"
+							src="{{ block.settings.image_badge_5 | img_url: '200x200' }}"
+							alt="image-badge">
+						{% endif %}
+					</div>
+					
 				{%- when 'text' -%}
 					{%- assign footer_text = block.settings.footer_text -%}
-
+					
 					<div class="footer-block footer-text" {{ block.shopify_attributes }}>
 						{%- if title != blank -%}
-							<p class="footer-title h5">{{ title }}</p>
+						<p class="footer-title h5">{{ title }}</p>
 						{%- endif -%}
-
+						
 						<div class="rte">
 							{{- footer_text -}}
 						</div>
@@ -144,10 +176,6 @@
 
 	<div class="footer-bottom wrapper">
 		{%- render 'cross-border' -%}
-
-		{%- if section.settings.show_social_links -%}
-			{%- render 'footer-social' -%}
-		{%- endif -%}
 
 		{%- render 'footer-copyright' -%}
 
@@ -333,6 +361,41 @@
 					"id": "title",
 					"label": "Heading",
 					"default": "<p>Newsletter</p>"
+				}
+			]
+		},
+		{
+			"type": "badges",
+			"name": "Badges",
+			"settings": [
+				{
+					"type": "paragraph",
+					"content": "Choose up to 5 badge images to show in the footer."
+				},
+				{
+					"type": "image_picker",
+					"id": "image_badge_1",
+					"label": "Select an image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_badge_2",
+					"label": "Select an image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_badge_3",
+					"label": "Select an image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_badge_4",
+					"label": "Select an image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_badge_5",
+					"label": "Select an image"
 				}
 			]
 		}
