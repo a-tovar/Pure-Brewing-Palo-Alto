@@ -481,11 +481,14 @@
                       {%- for link in linklists[block.settings.linklist].links -%}
                         <li><a href="{{ link.url }}" {% if link.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %} >
                           {{ link.title | escape }}</a></li>
-                        {%- if collection.title == link.title -%}
+                        {% assign collection_title = collection.title | downcase %}
+                        {% assign link_title = link.title | downcase %}
+                        {%- if collection_title == link_title -%}
                         <ul style="text-indent:25px">
                           {%- for l in link.links -%}
                             <li><a href="{{ l.url }}" {% if l.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %}> 
-                              {{ l.title | escape }}</a></li>
+                              {{ l.title | escape }}
+                            </a></li>
                           {%- endfor -%}
                         </ul>
                         {%- endif -%}
@@ -587,11 +590,14 @@
                     {%- for link in linklists[block.settings.linklist].links -%}
                       <li><a href="{{ link.url }}" {% if link.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %} >
                         {{ link.title | escape }}</a></li>
-                      {%- if collection.title == link.title -%}
+                      {% assign collection_title = collection.title | downcase %}
+                      {% assign link_title = link.title | downcase %}
+                      {%- if collection_title == link_title -%}
                       <ul style="text-indent:25px">
                         {%- for l in link.links -%}
                           <li><a href="{{ l.url }}" {% if l.current %}aria-current="page" class="active" style="color:#05A4F7;font-weight:bold;"{% endif %}> 
-                            {{ l.title | escape }}</a></li>
+                            {{ l.title | escape }}
+                          </a></li>
                         {%- endfor -%}
                       </ul>
                       {%- endif -%}

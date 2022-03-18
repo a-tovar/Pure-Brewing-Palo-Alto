@@ -405,6 +405,7 @@ var ajaxCart = (function(module, $) {
     var isCartTemplate = $( 'body' ).hasClass( 'template-cart' );
 
     $cartContainer.empty();
+    $('.cart-beer-faq').css('display', 'none');
 
     // Show empty cart
     if (cart.item_count === 0) {
@@ -421,8 +422,6 @@ var ajaxCart = (function(module, $) {
     var errors = '';
     var source = $("#CartTemplate").html();
     hasBeer = false;
-
-    $('.cart-beer-faq').css('display', 'none');
 
     // Add each item to our squirrelly.js data
     $.each(cart.items, function(index, cartItem) {

@@ -148,6 +148,7 @@
     {% assign hasBalboa = 0 %}
     {% assign hasCarlsbad = 0 %}
     {% assign hasVista = 0 %}
+    {% assign hasNorth = 0 %}
     {% for tag in product.tags %}
       {% if tag=='miramar' %}
         {% assign hasMiramar = 1 %}
@@ -157,6 +158,8 @@
         {%assign hasCarlsbad = 1 %}
       {% elsif tag=='vista'%}
         {% assign hasVista = 1 %}
+      {% elsif tag=='north'%}
+        {% assign hasNorth = 1 %}
       {% endif %}
     {% endfor %}
     <div id="product-location-selector" class="selector-wrapper" data-option="option">
@@ -192,6 +195,13 @@
           <li class="popout-list__item" data-popout-item>
             <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project-vista-1305-hot-spring-way/v3/?mode=fulfillment" target="_blank" data-value="vista" data-popout-option>
               <span>Vista</span>
+            </a>
+          </li>
+          {% endif %}
+          {% if hasNorth == 1 %}
+          <li class="popout-list__item" data-popout-item>
+            <a class="popout-list__option popout-list__option--product" href="https://www.toasttab.com/pure-project-north-park/v3" target="_blank" data-value="vista" data-popout-option>
+              <span>North Park</span>
             </a>
           </li>
           {% endif %}
