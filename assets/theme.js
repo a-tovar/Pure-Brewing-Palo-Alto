@@ -2794,11 +2794,12 @@ PaloAlto.QuickViewPopup = {
         closeMarkup: '<button title="%title%" class="mfp-close">' + theme.icons.close + '</i></button>',
         callbacks: {
           parseAjax: function(mfpResponse) {
+            
             var $mfpContent = $(mfpResponse.data).children();
+            
             var $mfpData = $mfpContent.filter(self.selectors.product).add($mfpContent.filter(self.selectors.productJSON));
             var $productContainer = $mfpData.filter(self.selectors.product);
             var sectionId = $productContainer.attr('data-section-id');
-
             product = JSON.parse($mfpData.filter(self.selectors.productJSON)[0].innerHTML);
 
             self.$container = $productContainer;
