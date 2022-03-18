@@ -7,7 +7,7 @@
 {%- endstyle -%}
 
 {%- liquid 
-  assign show_shipping_message = section.settings.show_shipping_message
+  assign show_shipping_info = section.settings.show_shipping_info
   assign beer_shipping_text = section.settings.beer_shipping_text
   assign merch_shipping_text = section.settings.merch_shipping_text
 
@@ -35,15 +35,22 @@
 <section class="annoucement-banner__section">
   <div class="announcement-banner__container">
       <div class="announcement-banner__slanted">
+        
         <div class="announcement-banner__text">
-          {% comment %} {{- hasBeer -}} {% endcomment %}
-          {% comment %} {{- hasMerch -}} {% endcomment %}
-          {% comment %} {{- merch_shipping_text -}} {% endcomment %}
+          {%- if show_announcement_info -%}
+            {{ announcement_info_text }}
+        {%- endif -%}
+        {%- if show_shipping_info and show_announcement_info -%}
+          <br>
+        {%- endif -%}
+        {%- if show_shipping_info -%}
+        
           {% if hasBeer == false and hasMerch %}
               {{- merch_shipping_text -}}
             {% else %}
               {{- beer_shipping_text -}}
             {% endif %}
+        {%- endif -%}
             </div>
         </div>
       </div>
@@ -78,6 +85,12 @@
         "id": "show_announcement_info",
         "label": "Show Announcement Info",
         "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_info_text",
+        "label": "Announcement Info Text",
+        "default": "Announcement Info Text Here"
       },
       {
         "type": "color",
