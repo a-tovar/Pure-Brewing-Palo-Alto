@@ -77,7 +77,7 @@ assign featured_media = product.featured_media
   {% if carousel %} data-product-slide {% endif %} data-product-id="{{ product.id }}">
   {%- comment -%} Image {%- endcomment -%}
   <a class="product-grid-item__badge" href="{{ product.url | within: collection }}">
-  {%- render 'product-badge', on_sale: on_sale, sold_out: sold_out, pickup_only: pickup_only, badge: badge,
+  {%- render 'product-badge', on_sale: on_sale, sold_out: sold_out, pickup_only: pickup_only, preorder: preorder,badge: badge,
   preorder_badge: preorder_badge -%}
   </a>
   <div class="product-grid-item__content">

@@ -11655,12 +11655,8 @@ input[type="radio"].variant-input {
 .product-badge__comingsoon {
   background-color: #00aeef;
 }
-.product-badge__comingsoon > span {
-  left: -12%;
-  background-color: #00aeef;
-}
-.product-grid-item__hero > .product-grid-item__badge > .product-badge__comingsoon > span {
-  left: -27%;
+.product-badge__comingsoon > span > br {
+  display: none;
 }
 
 /* HERO Product Grid Item */
