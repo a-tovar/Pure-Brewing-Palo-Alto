@@ -6,6 +6,18 @@
 	handlebar.js template tags as available hooks.
 
 {% endcomment %}
+
+<style>
+	.cart-beer-faq {
+		display: none;
+	}
+	.cart-beer-faq a{
+		color: #05A4F7;
+		text-decoration: underline;
+		font-weight: 500;
+	}
+</style>
+
 <script id="CartTemplate" type="text/x-template">
 <form action="{{ routes.cart_url }}" method="post" novalidate class="cart ajaxcart" data-cart-form>
 	{% raw %}
