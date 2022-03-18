@@ -190,7 +190,7 @@ assign featured_media = product.featured_media
         {%- form 'product', product -%}
         <input type="hidden" name="quantity" value="1">
         <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ current_variant.id }}">
-        <button type="submit" name="add" class="btn btn--quick-buy" data-button-quick-buy>
+        <button type="submit" name="add" class="product-grid-item__quick-button btn btn--quick-buy" data-button-quick-buy>
           <span>{{ 'products.general.add_to_cart' | t }}</span>
           {%- render 'icon-loading' -%}
         </button>

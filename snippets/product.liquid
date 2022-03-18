@@ -86,6 +86,9 @@
     max-width: 500px;
     z-index: 1;
   }
+  .product__form-sticky .notification__form {
+    display: none;
+  }
   @media only screen and (max-width: 1023px) {
     .product__form-sticky {
       margin: auto;
@@ -506,10 +509,6 @@
       <div class="product__form__wrapper" data-product-form-wrapper {{ block.shopify_attributes }}>
         {%- comment -%} Product Form Snippet {%- endcomment -%}
         {%- render 'product-form-atc-only', product: product, current_variant: current_variant, show_payment_button: block.settings.show_payment_button, unique: unique -%}
-  
-        {%- if settings.show_newsletter -%}
-          {%- render 'notification-form', sold_out: sold_out, product_title: product.title, product_id: product.id -%}
-        {%- endif -%}
       </div>
     </div>
     {%- endunless -%}
@@ -522,6 +521,12 @@
 
 <script>
   $(function(){
+    if ($('.product-form__submit-btn').prop('disabled')) {
+      $('.product-form__radio-div').css('display', 'none');
+    } else {
+      $('.product-form__radio-div').css('display', 'block');
+    }
+
     let atcButton = $('.product__form__wrapper').first();
     let atcButtonSticky = $('.product__form-sticky');
     const scrollFunction = () => {

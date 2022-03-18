@@ -1762,6 +1762,11 @@ slate.Variants = (function() {
 		 * @return {event} variantPriceChange
 		 */
     _updatePrice: function(variant) {
+      // make sure that the sticky button reflects variant changes
+      $(`.product__form-sticky .product-single__variants option`).removeAttr('selected');
+      $(`.product__form-sticky .product-single__variants option[value=${variant.id}]`).attr('selected', 'true');
+
+      // when the variant changes but the price remains the same - do nothing
       if (variant.price === this.currentVariant.price && variant.compare_at_price === this.currentVariant.compare_at_price) {
         return;
       }
@@ -1770,6 +1775,8 @@ slate.Variants = (function() {
         type: 'variantPriceChange',
         variant: variant,
       });
+      // reflect updated price in ATC button
+      $('.product-form__submit-price').text('$' + (variant.price / 100).toFixed(2));
     },
 
 		/**
@@ -1800,6 +1807,13 @@ slate.Variants = (function() {
     },
 
     _updateStoreAvailabilityContent: function(variant) {
+      if (variant && variant.available) {
+        $('.product-form__btn-container').removeClass('product-form__btn-container-disabled');
+        $('.product-form__radio-div').css('display', 'block');
+      } else {
+        $('.product-form__btn-container').addClass('product-form__btn-container-disabled');
+        $('.product-form__radio-div').css('display', 'none');
+      }
       if (!this.storeAvailability) {
         return;
       }
