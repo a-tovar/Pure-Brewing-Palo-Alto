@@ -13,6 +13,18 @@
   {%- endif -%}
 {%- endstyle -%}
 
+<style>
+  .related-products__heading {
+    text-align: left;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .related-products__heading {
+      margin-bottom: 0;
+    }
+  }
+</style>
+
 <section
   id="RelatedProducts--{{ section.id }}"
   data-section-type="related-products"
@@ -28,7 +40,7 @@
           {%- if heading != blank -%}
             <div class="featured-collection__title">
               <div class="wrapper">
-                <h2 class="featured-collection__heading section__heading h4">{{ heading }}</h2>
+                <h2 class="featured-collection__heading section__heading related-products__heading">{{ heading }}</h2>
 
                 {%- if settings.show_spacer_lines -%}
                   <hr>
