@@ -12,6 +12,10 @@
      if preorder
        assign preorder_badge = 'products.product.preorder' | t | replace: ' ', '<br>' | replace: '-', '<br>'
      endif
+
+     if coming_soon
+       assign coming_soon_badge = 'products.product.coming_soon' | t | replace: '-', '<br>'
+     endif
    else
      assign soldout = 'products.product.sold_out_html' | t
    endif
@@ -23,6 +27,8 @@
   <div class="product-badge product-badge__pickup product__tag product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ pickup }}</span></div> 
 {%- elsif sold_out -%}
   <div class="product-badge product-badge__soldout product__tag product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ soldout }}</span></div>
+{%- elsif coming_soon and show_badge -%}
+  <div class="product-badge product-badge__comingsoon product__tag product__tag--custom product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ coming_soon_badge }}</span></div>
 {%- elsif preorder and show_badge -%}
   <div class="product-badge product-badge__comingsoon product__tag product__tag--custom product__tag--{{ settings.product_badge_style }}"><span class="product-badge__text">{{ preorder_badge }}</span></div>
 {%- elsif on_sale and show_badge -%}

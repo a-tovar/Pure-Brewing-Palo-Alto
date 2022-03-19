@@ -1808,6 +1808,11 @@ slate.Variants = (function() {
 
     _updateStoreAvailabilityContent: function(variant) {
       if (variant && variant.available) {
+        if ($('.product-form__submit-btn').hasClass('coming-soon')) {
+          $('.product-form__submit-btn').attr('disabled', 'true');
+          $('.product-form__submit-text').text('Coming Soon');
+          return;
+        }
         $('.product-form__btn-container').removeClass('product-form__btn-container-disabled');
         $('.product-form__radio-div').css('display', 'block');
       } else {
