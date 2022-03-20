@@ -182,8 +182,11 @@ assign featured_media = product.featured_media
       </a>
       {%- endif -%}
       {%- endif -%}
-
+      
       {%- unless settings.quick_button == 'none' -%}
+      {% if coming_soon or sold_out or pickup %}
+        <div></div> 
+      {%else %}
       <div class="btn-wrapper">
         {%- if settings.quick_button == 'view' -%}
         <a class="product-grid-item__quick-button btn btn--quick-view" href="{{ product.url | within: collection }}"
@@ -202,6 +205,7 @@ assign featured_media = product.featured_media
         {%- endform -%}
         {%- endif -%}
       </div>
+      {% endif %}
       {%- endunless -%}
     </div>
 
