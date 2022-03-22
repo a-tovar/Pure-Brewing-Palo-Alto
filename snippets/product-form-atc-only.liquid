@@ -81,56 +81,62 @@
   {%- endcomment -%}
   <div class="product-form__buttons-grid buttons-grid{% if show_payment_button %} buttons-grid--half{% endif %}">
     <div class="product-form__btn-container {% if sold_out %} product-form__btn-container-disabled {% elsif coming_soon %} product-form__btn-container-coming {% endif %}">
+      {% if product.handle == 'taproom-gift-card' %}
+        <a href="https://www.toasttab.com/pure-project-carlsbad/giftcards?utmCampaign=onlineOrdering" target="_blank" class="product-form__submit-btn btn" style="justify-content: center !important;">
+          Buy Now
+        </a>
+      {% else %}
       {%- if settings.show_quantity and coming_soon != true -%}
-          {%- comment -%}
-            Quantity Selector
-          {%- endcomment -%}
-          <div class="quantity-wrapper{% if enable_variant_boxes %} quantity-wrapper--half{% endif %}">
-            <div class="product-form__quantity-div popout" data-popout-option>
-              <button type="button" class="product-form__quantity-btn quantity__btn--decrease" data-quantity-button>
-                <span class="visually-hidden">{{ 'general.accessibility.decrease' | t }}</span>
-                {%- render 'icon-minus' -%}
-              </button>
+        {%- comment -%}
+          Quantity Selector
+        {%- endcomment -%}
+        <div class="quantity-wrapper{% if enable_variant_boxes %} quantity-wrapper--half{% endif %}">
+          <div class="product-form__quantity-div popout" data-popout-option>
+            <button type="button" class="product-form__quantity-btn quantity__btn--decrease" data-quantity-button>
+              <span class="visually-hidden">{{ 'general.accessibility.decrease' | t }}</span>
+              {%- render 'icon-minus' -%}
+            </button>
 
-              <input type="number" name="quantity" value="1" min="1" pattern="[0-9]*" class="product-form__quantity" data-popout-input data-quantity-input/>
+            <input type="number" name="quantity" value="1" min="1" pattern="[0-9]*" class="product-form__quantity" data-popout-input data-quantity-input/>
 
-              <button type="button" class="product-form__quantity-btn quantity__btn--increase" data-quantity-button>
-                <span class="visually-hidden">{{ 'general.accessibility.increase' | t }}</span>
-                {%- render 'icon-plus' -%}
-              </button>
-            </div>
-
-            <noscript>
-              <label for="quantity--{{ unique }}">{{ 'products.product.quantity' | t }}</label>
-              <input type="number" name="quantity" id="quantity--{{ unique }}" value="1" min="1">
-            </noscript>
+            <button type="button" class="product-form__quantity-btn quantity__btn--increase" data-quantity-button>
+              <span class="visually-hidden">{{ 'general.accessibility.increase' | t }}</span>
+              {%- render 'icon-plus' -%}
+            </button>
           </div>
-          
-        {%- else -%}
-          <input type="hidden" name="quantity" value="1">
-        {%- endif -%}
-        {%- comment -%} END QUANTITY {%- endcomment -%}
-        <button type="submit" name="add" id="AddToCart--{{ unique }}" class="product-form__submit-btn btn btn--submit {% if coming_soon %} coming-soon {% endif %}" {% if sold_out or coming_soon %} disabled {% endif %} data-add-to-cart>
-          <span id="AddToCartText" class="product-form__submit-text" data-add-to-cart-text>
-            {%- if sold_out -%}
-              {{- 'products.product.sold_out' | t -}}
-            {%- elsif preorder -%}
-              {{- 'products.product.preorder' | t -}}
-            {%- elsif coming_soon -%}
-              {{- 'products.product.coming_soon' | t -}}
-            {%- else -%}
-              {{- 'products.product.add_to_cart' | t -}}
-            {%- endif -%}
-          </span>
-          <span class="product-form__submit-divider"></span>
-          <span class="product-form__submit-price">{{ current_variant.price | money }}</span>
-          {%- render 'icon-loading' -%}
-        </button>
+
+          <noscript>
+            <label for="quantity--{{ unique }}">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" name="quantity" id="quantity--{{ unique }}" value="1" min="1">
+          </noscript>
+        </div>
+        
+      {%- else -%}
+        <input type="hidden" name="quantity" value="1">
+      {%- endif -%}
+      {%- comment -%} END QUANTITY {%- endcomment -%}
+      <button type="submit" name="add" id="AddToCart--{{ unique }}" class="product-form__submit-btn btn btn--submit {% if coming_soon %} coming-soon {% endif %}" {% if sold_out or coming_soon %} disabled {% endif %} data-add-to-cart>
+        <span id="AddToCartText" class="product-form__submit-text" data-add-to-cart-text>
+          {%- if sold_out -%}
+            {{- 'products.product.sold_out' | t -}}
+          {%- elsif preorder -%}
+            {{- 'products.product.preorder' | t -}}
+          {%- elsif coming_soon -%}
+            {{- 'products.product.coming_soon' | t -}}
+          {%- else -%}
+            {{- 'products.product.add_to_cart' | t -}}
+          {%- endif -%}
+        </span>
+        <span class="product-form__submit-divider"></span>
+        <span class="product-form__submit-price">{{ current_variant.price | money }}</span>
+        {%- render 'icon-loading' -%}
+      </button>
     </div>
     {%- if show_payment_button -%}
       <div data-payment-button="{{ section.settings.show_payment_button }}" data-quickview-payment-button="{{ settings.show_payment_button }}">
         {{- form | payment_button -}}
       </div>
+    {%- endif -%}
     {%- endif -%}
   </div>
 </div>
