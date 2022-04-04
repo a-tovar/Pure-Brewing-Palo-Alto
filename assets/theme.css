@@ -6049,6 +6049,7 @@ button.mfp-close {
   margin-bottom: 0;
   max-width: 100%;
   width: 300px;
+  border-color: black;
 }
 @media only screen and (max-width: 767px) {
   .cart__checkout {
@@ -11792,6 +11793,9 @@ input[type="radio"].variant-input {
   color: #ffffff;
   border-radius: 3px; /* PIXEL */
 }
+.product-form__btn-container-coming button:disabled {
+  background: none 0% 0% / auto repeat scroll padding-box border-box #7E7E7E;
+}
 .product-form__btn-container-disabled .quantity-wrapper {
   display: none;
 }
@@ -11857,7 +11861,7 @@ input[type="radio"].variant-input {
 }
 
 .product-form__submit-btn:disabled {
-  background-color: #7E7E7E;
+  background-color: #c43e20;
   color: #ffffff;
   border-radius: var(---radius);
   justify-content: center !important;
@@ -11866,8 +11870,14 @@ input[type="radio"].variant-input {
   color: #ffffff;
 }
 
-.product-form__btn-container-coming button:disabled {
-  background: none 0% 0% / auto repeat scroll padding-box border-box #7E7E7E;
+.product-form__submit-btn .disabled {
+  background-color: #c43e20;
+  color: #ffffff;
+  border-radius: var(---radius);
+  justify-content: center !important;
+}
+.product-form__submit-btn .disabled:hover {
+  color: #d6d6d6;
 }
 
 .product-form__submit-text {

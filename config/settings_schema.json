@@ -4,8 +4,8 @@
     "theme_name": "Palo Alto",
     "theme_author": "Presidio Creative",
     "theme_version": "4.0.1",
-    "theme_support_url": "https:\/\/presidiocreative.com\/link\/palo-alto\/contact",
-    "theme_documentation_url": "https:\/\/presidiocreative.com\/link\/palo-alto\/docs"
+    "theme_support_url": "https://presidiocreative.com/link/palo-alto/contact",
+    "theme_documentation_url": "https://presidiocreative.com/link/palo-alto/docs"
   },
   {
     "name": "Appearance",
@@ -31,14 +31,8 @@
         "label": "First item in dropdown menu",
         "default": "trigger",
         "options": [
-          {
-            "label": "Link",
-            "value": "link"
-          },
-          {
-            "label": "Link that opens menu",
-            "value": "trigger"
-          }
+          { "label": "Link", "value": "link" },
+          { "label": "Link that opens menu", "value": "trigger" }
         ]
       },
       {
@@ -67,18 +61,9 @@
         "id": "button_style",
         "label": "Style",
         "options": [
-          {
-            "label": "Square",
-            "value": "square"
-          },
-          {
-            "label": "Rounded",
-            "value": "rounded"
-          },
-          {
-            "label": "Pill",
-            "value": "pill"
-          }
+          { "label": "Square", "value": "square" },
+          { "label": "Rounded", "value": "rounded" },
+          { "label": "Pill", "value": "pill" }
         ],
         "default": "square",
         "info": "Affects buttons and form elements"
@@ -139,6 +124,7 @@
         "label": "Custom badge",
         "default": "#000"
       },
+
       {
         "type": "header",
         "content": "Buttons",
@@ -219,14 +205,8 @@
         "label": "Font",
         "default": "body",
         "options": [
-          {
-            "label": "Body",
-            "value": "body"
-          },
-          {
-            "label": "Heading",
-            "value": "heading"
-          }
+          { "label": "Body", "value": "body" },
+          { "label": "Heading", "value": "heading" }
         ]
       },
       {
@@ -256,14 +236,8 @@
         "label": "Font",
         "default": "body",
         "options": [
-          {
-            "label": "Body",
-            "value": "body"
-          },
-          {
-            "label": "Heading",
-            "value": "heading"
-          }
+          { "label": "Body", "value": "body" },
+          { "label": "Heading", "value": "heading" }
         ]
       },
       {
@@ -307,15 +281,9 @@
         "info": "Grid layout only",
         "default": "1",
         "options": [
-          {
-            "label": "1",
-            "value": "1"
-          },
-          {
-            "label": "2",
-            "value": "2"
-          }
-        ]
+            { "label": "1", "value": "1" },
+            { "label": "2", "value": "2" }
+          ]
       },
       {
         "type": "header",
@@ -327,14 +295,8 @@
         "label": "Image size",
         "default": "cover",
         "options": [
-          {
-            "label": "Stretch",
-            "value": "cover"
-          },
-          {
-            "label": "Fit",
-            "value": "contain"
-          }
+          { "label": "Stretch", "value": "cover" },
+          { "label": "Fit", "value": "contain" }
         ]
       },
       {
@@ -385,7 +347,7 @@
         "type": "checkbox",
         "id": "show_rating",
         "label": "Show review stars",
-        "info": "Install Shopify's free [Product Reviews app](https:\/\/apps.shopify.com\/product-reviews) before enabling this option.",
+        "info": "Install Shopify's free [Product Reviews app](https://apps.shopify.com/product-reviews) before enabling this option.",
         "default": true
       },
       {
@@ -433,7 +395,7 @@
       {
         "type": "header",
         "content": "Color swatches",
-        "info": "Set up your product color variant options. [Learn more](https:\/\/presidiocreative.com\/link\/palo-alto\/swatches)"
+        "info": "Set up your product color variant options. [Learn more](https://presidiocreative.com/link/palo-alto/swatches)"
       },
       {
         "type": "checkbox",
@@ -456,7 +418,7 @@
         "type": "checkbox",
         "id": "show_payment_button",
         "label": "Show dynamic checkout button in Quick View",
-        "info": "Lets customers check out directly using a familiar payment method. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/change-the-layout\/dynamic-checkout)",
+        "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
         "default": true
       },
       {
@@ -466,18 +428,9 @@
         "info": "For desktop only",
         "default": "view",
         "options": [
-          {
-            "label": "Quick view",
-            "value": "view"
-          },
-          {
-            "label": "Quick buy",
-            "value": "buy"
-          },
-          {
-            "label": "None",
-            "value": "none"
-          }
+          { "label": "Quick view", "value": "view" },
+          { "label": "Quick buy", "value": "buy" },
+          { "label": "None", "value": "none" }
         ]
       },
       {
@@ -494,7 +447,7 @@
         "type": "richtext",
         "id": "text_newsletter",
         "label": "Text",
-        "default": "<p>Notify me when this product is available:<\/p>"
+        "default": "<p>Notify me when this product is available:</p>"
       },
       {
         "type": "header",
@@ -503,7 +456,7 @@
       {
         "type": "header",
         "content": "Media",
-        "info": "Learn more about [media types](https:\/\/help.shopify.com\/manual\/products\/product-media)"
+        "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
       },
       {
         "type": "checkbox",
@@ -570,7 +523,7 @@
         "id": "free_shipping_limit",
         "label": "Minimum spend for free shipping",
         "default": "100",
-        "info": "Use round numbers. Exclude currency, symbols, and letters. [More info](https:\/\/help.shopify.com\/en\/manual\/shipping\/setting-up-and-managing-your-shipping\/free-shipping-rates#free-shipping-over-a-certain-value)"
+        "info": "Use round numbers. Exclude currency, symbols, and letters. [More info](https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/free-shipping-rates#free-shipping-over-a-certain-value)"
       },
       {
         "type": "header",
@@ -587,7 +540,7 @@
         "type": "richtext",
         "id": "accept_terms_text",
         "label": "Checkbox label",
-        "default": "<p>I agree with the terms and conditions<\/p>"
+        "default": "<p>I agree with the terms and conditions</p>"
       }
     ]
   },

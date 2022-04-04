@@ -6,7 +6,7 @@
     },
     "accessibility": {
       "skip_to_content": "Aller au contenu",
-      "select_variant": "Sélectionnez la liste déroulante des variantes",
+      "select_variant":  "Sélectionnez la liste déroulante des variantes",
       "show_submenu": "Afficher le sous-menu",
       "show_products": "Afficher les produits",
       "hide_products": "Masquer les produits",
@@ -37,13 +37,13 @@
     "meta": {
       "tags": "Étiqueter \"{{ tags }}\"",
       "page": "Page {{ page }}"
-    },
+      },
     "404": {
       "title": "404",
       "subtext_html": "Cette page n'existe pas.",
       "button_text": "Retour à la page d'accueil"
     },
-    "newsletter_form": {
+      "newsletter_form": {
       "heading": "Newsletter",
       "email": "email@example.com",
       "newsletter_success": "Merci pour votre inscription!",
@@ -116,7 +116,7 @@
       "limit_error": "Désolé, il semble que nous n’ayons pas assez de ce produit.",
       "continue_shopping": "Continuer vos achats",
       "close_cart": "Fermer le panier",
-      "free_shipping_message_html": "Dépensez <span data-free-shipping-amount>{{ amount }}<\/span> pour bénéficier de la livraison gratuite",
+      "free_shipping_message_html": "Dépensez <span data-free-shipping-amount>{{ amount }}</span> pour bénéficier de la livraison gratuite",
       "qualified_shipping_message": "Toutes nos félicitations! Tes commandes se qualifient pour des expeditions gratuites"
     },
     "label": {
@@ -150,7 +150,7 @@
       "sort_button": "Trier",
       "title": "Collection",
       "to": "À",
-      "use_fewer_filters_html": "Utiliser moins de filtres ou <a class=\"{{ class }}\" href=\"{{ link }}\">tout effacer<\/a>"
+      "use_fewer_filters_html": "Utiliser moins de filtres ou <a class=\"{{ class }}\" href=\"{{ link }}\">tout effacer</a>"
     }
   },
   "collections": {
@@ -183,10 +183,10 @@
       "date_descending": "Date, décroissant",
       "date_ascending": "Date, croissant"
     },
-    "pagination": {
+      "pagination": {
       "load_more": "Charger plus",
       "loading": "Chargement"
-    },
+      },
     "breadcrumbs": {
       "home": "Home",
       "back_to_home": "Retour a la page d'acceuil",
@@ -470,9 +470,9 @@
     "month_day_year": "%B %d, %Y"
   },
   "footer": {
-    "socials": {
-      "title": "Voir {{ shop_name }} sur {{ social }}",
-      "rss": "RSS"
+    "socials" : {
+      "title":"Voir {{ shop_name }} sur {{ social }}",
+      "rss":"RSS"
     },
     "currency": "Devise",
     "language": "Langue",

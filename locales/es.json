@@ -2,11 +2,11 @@
   "general": {
     "ie11_support_message": "Este sitio web tiene ciertas restriucciones de navegación. Le recomendamos utilizar buscadores como: Edge, Chrome, Safari o Firefox.",
     "swatches": {
-      "color": "Color"
-    },
+			"color": "Color"
+	 	},
     "accessibility": {
       "skip_to_content": "Saltar al contenido",
-      "select_variant": "Seleccionar menú desplegable de variantes",
+      "select_variant":  "Seleccionar menú desplegable de variantes",
       "show_submenu": "Mostrar submenú",
       "show_products": "Mostrar productos",
       "hide_products": "Ocultar productos",
@@ -116,7 +116,7 @@
       "continue_shopping": "Seguir comprando",
       "close_cart": "Cerrar el carrito",
       "shipping_at_checkout": "Gastos de envío e impuestos calculados al finalizar la compra",
-      "free_shipping_message_html": "Invierta <span data-free-shipping-amount>{{ amount }}<\/span> para calificar para el envío gratuito",
+      "free_shipping_message_html": "Invierta <span data-free-shipping-amount>{{ amount }}</span> para calificar para el envío gratuito",
       "qualified_shipping_message": "¡Felicidades! Su pedido califica para el envío GRATIS"
     },
     "label": {
@@ -150,7 +150,7 @@
       "sort_button": "Ordenar",
       "title": "Colección",
       "to": "A",
-      "use_fewer_filters_html": "Usa menos filtros o <a class=\"{{ class }}\" href=\"{{ link }}\">borra todo<\/a>"
+      "use_fewer_filters_html": "Usa menos filtros o <a class=\"{{ class }}\" href=\"{{ link }}\">borra todo</a>"
     }
   },
   "collections": {
@@ -467,9 +467,9 @@
     }
   },
   "footer": {
-    "socials": {
-      "title": "Ver {{ shop_name }} en {{ social }}",
-      "rss": "RSS"
+    "socials" : {
+      "title":"Ver {{ shop_name }} en {{ social }}",
+      "rss":"RSS"
     },
     "language": "Idioma",
     "currency": "Moneda",

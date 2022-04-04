@@ -70,6 +70,7 @@
                 <span>{{ item.selling_plan_allocation.selling_plan.name }}</span>
               </div>
             {%- endunless -%}
+        
           </td>
           <td class="cart__cell cart__cell--price text-center" data-label="{{ 'cart.label.price' | t }}">
             <span class="price">
@@ -134,6 +135,7 @@
     </tbody>
   </table>
   <div class="cart__bottom">
+   
     {%- if settings.enable_cart_notes -%}
       <div class="cart__bottom__notes">
         <textarea name="note" class="input--full" placeholder="{{ 'cart.general.note' | t }}" id="CartSpecialInstructions" rows="4">{{ cart.note }}</textarea>
@@ -141,7 +143,7 @@
     {%- endif -%}
 
     <div class="cart__bottom__payment">
-      <div class="cart__subtotal">
+      <div>
         {%- assign free_shipping_text = 'cart.general.free_shipping_message_html' | t -%}
 
 {%- if settings.show_free_shipping_message and settings.free_shipping_limit != blank and free_shipping_text != blank -%}
@@ -191,7 +193,8 @@
         {%- endif -%}
 
         {% comment %} Cart level subtotal {% endcomment %}
-        <div class="cart__row--bottom cart__subtotal">
+       
+        <div class="cart__row--bottom">
           <span class="cart__subtotal__title">{{ 'cart.general.subtotal' | t }}</span>
           <span class="cart__subtotal__price">{{ cart.total_price | money }}</span>
         </div>

@@ -1,0 +1,34 @@
+
+
+<div>
+  <span>
+    Notification Text
+  </span>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Notification Banner",
+    "settings": [
+		{
+			"type": "color",
+			"id": "overlay_color",
+			"label": "Overlay color",
+			"default": "#fff"
+		},
+		{
+	        "label": "Text",
+	        "type": "richtext",
+	        "id": "notification_content",
+	        "default": "<p>Popups are an ideal place to offer promotions and collect emails.</p>"
+      	},
+		{
+	        "label": "Display Shipping Content",
+	        "type": "checkbox",
+			"id": "shipping_content",
+			"default": true
+      	}
+	]
+  }
+{% endschema %}

@@ -6,7 +6,7 @@
     },
     "accessibility": {
       "skip_to_content": "Inhalt überspringen",
-      "select_variant": "Wählen Sie die Dropdown-Liste Variante",
+      "select_variant":  "Wählen Sie die Dropdown-Liste Variante",
       "show_submenu": "Untermenü anzeigen",
       "show_products": "Produkte anzeigen",
       "hide_products": "Produkte verstecken",
@@ -60,9 +60,9 @@
       "has_results": "Ergebnisse zeigen für \"{{search}}\"",
       "no_results": "Ihre Suche für \"{{ search }}\" ergab keine Ergebnisse",
       "results": {
-        "one": " Ergebnis",
-        "other": " Ergebnisse",
-        "no_results": "Keine Ergebnisse gefunden"
+      "one": " Ergebnis",
+      "other": " Ergebnisse",
+      "no_results": "Keine Ergebnisse gefunden"
       },
       "browse_categories": "Kategorien durchsuchen",
       "badge": {
@@ -95,8 +95,8 @@
       "success": "Ihr Kommentar wurde erfolgreich veröffentlicht! Vielen Dank für Ihren Kommentar!",
       "unapproved": "Die angegebene E-Mail-Adresse ist nicht zum Posten von Kommentaren freigegeben.",
       "comments_with_count": {
-        "one": "{{ count }} Kommenta",
-        "other": "{{ count }} Kommentare"
+      "one": "{{ count }} Kommenta",
+      "other": "{{ count }} Kommentare"
       }
     }
   },
@@ -116,7 +116,7 @@
       "limit_error": "Sorry, sieht so aus, als hätten wir nicht genug von diesem Produkt.",
       "continue_shopping": "Mit dem Einkaufen fortfahren",
       "close_cart": "Einkaufswagen schließen",
-      "free_shipping_message_html": "Geben Sie <span data-free-shipping-amount>{{ amount }}<\/span> aus, um sich für den kostenlosen Versand zu qualifizieren",
+      "free_shipping_message_html": "Geben Sie <span data-free-shipping-amount>{{ amount }}</span> aus, um sich für den kostenlosen Versand zu qualifizieren",
       "qualified_shipping_message": "Herzliche Glückwünsche! Ihre Bestellung wird kostenlos versendet"
     },
     "label": {
@@ -143,14 +143,14 @@
       "max_price": "Der höchste Preis ist {{ price }}",
       "product_count": {
         "one": "{{ product_count }} von {{ count }} Produkt wird angezeigt",
-        "other": "{{ product_count }} von {{ count }} Produkten wird\/werden angezeigt"
+        "other": "{{ product_count }} von {{ count }} Produkten wird/werden angezeigt"
       },
       "reset": "Zurücksetzen",
       "sort_by_label": "Sortieren nach",
       "sort_button": "Sortieren",
       "title": "Kategorie",
       "to": "Nach",
-      "use_fewer_filters_html": "Verwende weniger Filter oder <a class=\"{{ class }}\" href=\"{{ link }}\">lösche alle<\/a>"
+      "use_fewer_filters_html": "Verwende weniger Filter oder <a class=\"{{ class }}\" href=\"{{ link }}\">lösche alle</a>"
     }
   },
   "collections": {
@@ -162,12 +162,12 @@
       "no_matches_by_filter": "{{ products_count }} Produkte mit dieser Option gefunden.",
       "shop": "Einkaufen",
       "items_with_count": {
-        "one": "{{ count }} Gegenstand",
-        "other": "{{ count }} Gegenstände"
+      "one": "{{ count }} Gegenstand",
+      "other": "{{ count }} Gegenstände"
       },
       "products_with_count": {
-        "one": "{{ count }} Produkt gezeigt",
-        "other": "{{ count }} Produkte gezeigt"
+      "one": "{{ count }} Produkt gezeigt",
+      "other": "{{ count }} Produkte gezeigt"
       }
     },
     "sorting": {
@@ -401,8 +401,8 @@
     "cart": {
       "title": "Einkaufswagen",
       "items_count": {
-        "one": "Gegenstand",
-        "other": "Gegenstände"
+      "one": "Gegenstand",
+      "other": "Gegenstände"
       }
     },
     "customer": {
@@ -467,12 +467,12 @@
     }
   },
   "date_formats": {
-    "month_day_year": "%B %d, %Y"
+  "month_day_year": "%B %d, %Y"
   },
   "footer": {
-    "socials": {
-      "title": "Ansehen {{ shop_name }} auf {{ social }}",
-      "rss": "RSS"
+    "socials" : {
+      "title":"Ansehen {{ shop_name }} auf {{ social }}",
+      "rss":"RSS"
     },
     "currency": "Währung",
     "language": "Sprache",

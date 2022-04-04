@@ -6,7 +6,7 @@
     },
     "accessibility": {
       "skip_to_content": "Pular para o conteúdo",
-      "select_variant": "Selecione a lista suspensa de variantes",
+      "select_variant":  "Selecione a lista suspensa de variantes",
       "show_submenu": "Mostrar submenu",
       "show_products": "Mostrar produtos",
       "hide_products": "Ocultar produtos",
@@ -116,7 +116,7 @@
       "limit_error": "Desculpe, parece que não temos esse produto em quantidade suficiente.",
       "continue_shopping": "Continue comprando",
       "close_cart": "Fechar Pedido",
-      "free_shipping_message_html": "Gaste <span data-free-shipping-amount>{{ amount }}<\/span> para se qualificar para frete grátis",
+      "free_shipping_message_html": "Gaste <span data-free-shipping-amount>{{ amount }}</span> para se qualificar para frete grátis",
       "qualified_shipping_message": "Parabéns! Seu pedido se qualifica para frete grátis"
     },
     "label": {
@@ -150,7 +150,7 @@
       "sort_button": "Organizar",
       "title": "Coleção",
       "to": "Para",
-      "use_fewer_filters_html": "Usar menos filtros ou <a class=\"{{ class }}\" href=\"{{ link }}\">limpar tudo<\/a>"
+      "use_fewer_filters_html": "Usar menos filtros ou <a class=\"{{ class }}\" href=\"{{ link }}\">limpar tudo</a>"
     }
   },
   "collections": {
@@ -470,9 +470,9 @@
     "month_day_year": "%d %m, %A"
   },
   "footer": {
-    "socials": {
-      "title": "Ver {{ shop_name }} no {{ social }}",
-      "rss": "RSS"
+    "socials" : {
+      "title":"Ver {{ shop_name }} no {{ social }}",
+      "rss":"RSS"
     },
     "currency": "Moeda",
     "language": "Idioma",

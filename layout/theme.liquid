@@ -1,3 +1,7 @@
+{%- comment %}<locksmith:3bfb>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:3bfb>{% endcomment -%}
+
 <!doctype html>
 <html class="no-js no-touch" lang="{{ request.locale.iso_code }}">
 <head>
@@ -25,9 +29,15 @@
   <title>{{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
 
   {%- if page_description -%}
-    <meta name="description" content="{{ page_description | escape }}">
+    {%- comment %}<locksmith:5f31>{% endcomment -%}
+      {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ page_description | escape }}">{% endif -%}
+      {%- comment %}original: <meta name="description" content="{{ page_description | escape }}">{%- endcomment %}
+    {%- comment %}</locksmith:5f31>{% endcomment -%}
   {%- else -%}
-    <meta name="description" content="{{ shop.description | escape }}">
+    {%- comment %}<locksmith:5c85>{% endcomment -%}
+      {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ shop.description | escape }}">{% endif -%}
+      {%- comment %}original: <meta name="description" content="{{ shop.description | escape }}">{%- endcomment %}
+    {%- comment %}</locksmith:5c85>{% endcomment -%}
   {%- endif -%}
 
   {%- unless settings.type_base_font.system? -%}
@@ -157,7 +167,9 @@
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
   {{ content_for_header }}
-</head>
+<!-- GSSTART Coming Soon code start. Do not change -->
+<script type="text/javascript"> gsProductByVariant = {}; {% if product.id > 1 %}{% for variant in product.variants %} gsProductByVariant[{{variant.id}}] = {% if variant.available %} 1 {% else %} 0 {% endif %}; {% endfor %}{% endif %}  gsProductCSID = "{{ product.id }}"; gsDefaultV = "{{ product.selected_or_first_available_variant.id }}"; </script><script  type="text/javascript" src="https://gravity-software.com/js/shopify/pac_shop26098.js?v=999b3827aac26b32950d0e495ce7b790"></script>
+<!-- Coming Soon code end. Do not change GSEND --></head>
 
 {%- capture body_class -%}
 template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}
