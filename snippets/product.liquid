@@ -521,7 +521,7 @@
 
 <script>
   $(function(){
-    if ($('.product-form__submit-btn').prop('disabled')) {
+    if ($('.product-form__submit-btn').prop('disabled') && !$('.product-form__submit-btn').hasClass('noAllowAdd')) {
       $('.product-form__radio-div').css('display', 'none');
     } else {
       $('.product-form__radio-div').css('display', 'block');

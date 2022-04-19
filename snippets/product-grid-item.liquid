@@ -77,6 +77,39 @@ endif
 assign current_variant = product.selected_or_first_available_variant
 assign featured_media = product.featured_media
 -%}
+
+{% assign isStandalone = false %} 
+
+{% assign isRestock = false %} 
+
+{% for tag in product.tags %}
+  {%if tag=='standalone' %}
+  	{% assign isStandalone = true%}
+  {%endif%}
+  {%if tag=='restock' %}
+  	{% assign isRestock = true%}
+  {%endif%}
+{%endfor%}
+
+{% assign hasStandalone = 'empty' %}
+{% if cart.item_count != 0 %}
+	{% assign hasStandalone = 'hasRegular'%}
+    {% for item in cart.items %}
+        {% for tag in item.product.tags %}
+            {%if tag=='standalone' %}
+                {% assign hasStandalone = 'hasStandalone'%}
+            {%endif%}
+        {%endfor%}
+    {%endfor%}
+{% endif %}
+
+{% assign allowAdd = true %}
+{% if isStandalone == true and hasStandalone == 'hasRegular'%}
+	{% assign allowAdd = false %}
+{% elsif isStandalone == false and hasStandalone == 'hasStandalone' %}
+	{% assign allowAdd = false %}
+{% endif %}
+
 <div
   class="{% if hero %} product-grid-item__hero {% endif %}product-grid-item{% if carousel %} carousel__item {% else %} non-carousel__item {% endif %} {{ size_desktop }} {{ size_mobile }}{% if tag %} has-tag{% endif %}"
   {% if carousel %} data-product-slide {% endif %} data-product-id="{{ product.id }}">
@@ -203,7 +236,7 @@ assign featured_media = product.featured_media
           Buy Now
         </a>
         {% else %}
-        <button type="submit" name="add" class="product-grid-item__quick-button btn btn--quick-buy" data-button-quick-buy>
+        <button type="submit" name="add" class="product-grid-item__quick-button btn btn--quick-buy" {% if allowAdd == false %} disabled {% endif %} data-button-quick-buy>
           <span>{{ 'products.general.add_to_cart' | t }}</span>
           {%- render 'icon-loading' -%}
         </button>

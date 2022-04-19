@@ -11712,6 +11712,15 @@ input[type="radio"].variant-input {
   border: clamp(2px, 1px, 0.125rem) solid #ffffff;
   border-radius: 0;
 }
+.product-grid-item__quick-button:disabled {
+  background-color: #00aeef;
+  color: #d6d6d6;
+}
+.product-grid-item__quick-button:disabled:hover {
+  background-color: #00aeef;
+  color: #d6d6d6;
+  border: clamp(2px, 1px, 0.125rem) solid #d6d6d6;
+}
 
 .product-grid-item__info {
   height: 21%;

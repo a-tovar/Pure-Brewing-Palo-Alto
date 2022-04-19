@@ -50,6 +50,38 @@
   assign product_form_id = "AddToCartForm--" | append: unique
 -%}
 
+{% assign isStandalone = false %} 
+
+{% assign isRestock = false %} 
+
+{% for tag in product.tags %}
+  {%if tag=='standalone' %}
+  	{% assign isStandalone = true%}
+  {%endif%}
+  {%if tag=='restock' %}
+  	{% assign isRestock = true%}
+  {%endif%}
+{%endfor%}
+
+{% assign hasStandalone = 'empty' %}
+{% if cart.item_count != 0 %}
+	{% assign hasStandalone = 'hasRegular'%}
+    {% for item in cart.items %}
+        {% for tag in item.product.tags %}
+            {%if tag=='standalone' %}
+                {% assign hasStandalone = 'hasStandalone'%}
+            {%endif%}
+        {%endfor%}
+    {%endfor%}
+{% endif %}
+
+{% assign allowAdd = true %}
+{% if isStandalone == true and hasStandalone == 'hasRegular'%}
+	{% assign allowAdd = false %}
+{% elsif isStandalone == false and hasStandalone == 'hasStandalone' %}
+	{% assign allowAdd = false %}
+{% endif %}
+
 {%- form 'product', product, class: "product__form product__form--is-loading", data-product-form: '', id: product_form_id, data-enable-button: show_payment_button -%}
 
 <div class="product-form__variants-wrapper variants-wrapper{% unless enable_variant_boxes %} variants-wrapper--grid{% endunless %}">
@@ -80,7 +112,7 @@
     Buttons
   {%- endcomment -%}
   <div class="product-form__buttons-grid buttons-grid{% if show_payment_button %} buttons-grid--half{% endif %}">
-    <div class="product-form__btn-container {% if sold_out %} product-form__btn-container-disabled {% elsif coming_soon %} product-form__btn-container-coming {% endif %}">
+    <div class="product-form__btn-container {% if sold_out or allowAdd == false %} product-form__btn-container-disabled {% elsif coming_soon %} product-form__btn-container-coming {% endif %}">
       {% if product.handle == 'taproom-gift-card' %}
         <a href="https://www.toasttab.com/pure-project-carlsbad/giftcards?utmCampaign=onlineOrdering" target="_blank" class="product-form__submit-btn btn" style="justify-content: center !important;">
           Buy Now
@@ -115,7 +147,7 @@
           <input type="hidden" name="quantity" value="1">
         {%- endif -%}
         {%- comment -%} END QUANTITY {%- endcomment -%}
-        <button type="submit" name="add" id="AddToCart--{{ unique }}" class="product-form__submit-btn btn btn--submit {% if coming_soon %} coming-soon {% endif %}" {% if sold_out or coming_soon %} disabled {% endif %} data-add-to-cart>
+        <button type="submit" name="add" id="AddToCart--{{ unique }}" class="product-form__submit-btn btn btn--submit {% if coming_soon %} coming-soon {% elsif allowAdd == false %} noAllowAdd {% endif %}" {% if sold_out or coming_soon or allowAdd == false %} disabled {% endif %} data-add-to-cart>
           <span id="AddToCartText" class="product-form__submit-text" data-add-to-cart-text>
             {%- if sold_out -%}
               {{- 'products.product.sold_out' | t -}}

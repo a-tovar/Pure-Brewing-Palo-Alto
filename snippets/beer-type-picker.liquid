@@ -24,6 +24,9 @@
  {% elsif tag=='porter' %}
      {%assign beertype = 'Porter' %}
    {% break %}
+{% elsif tag == 'saison' %}
+	{%assign beertype = 'Saison' %}
+  {% break %}
  {% elsif tag=='lager' %}
    {%assign beertype = 'Lager' %}
    {% for tag in _product.tags %}

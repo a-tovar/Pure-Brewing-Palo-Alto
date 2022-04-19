@@ -1807,7 +1807,7 @@ slate.Variants = (function() {
     },
 
     _updateStoreAvailabilityContent: function(variant) {
-      if (variant && variant.available) {
+      if (variant && variant.available && !$('.product-form__btn-container').hasClass('product-form__btn-container-disabled')) {
         if ($('.product-form__submit-btn').hasClass('coming-soon')) {
           $('.product-form__submit-btn').attr('disabled', 'true');
           $('.product-form__submit-text').text('Coming Soon');
@@ -1817,7 +1817,12 @@ slate.Variants = (function() {
         $('.product-form__radio-div').css('display', 'block');
       } else {
         $('.product-form__btn-container').addClass('product-form__btn-container-disabled');
-        $('.product-form__radio-div').css('display', 'none');
+        $('.product-form__submit-btn').attr('disabled', 'true');
+        if (!$('.product-form__submit-btn').hasClass('noAllowAdd')) {
+          $('.product-form__radio-div').css('display', 'none');
+        } else {
+          $('.product-form__radio-div').css('display', 'block');
+        }
       }
       if (!this.storeAvailability) {
         return;
