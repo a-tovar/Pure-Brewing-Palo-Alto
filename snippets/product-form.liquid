@@ -316,9 +316,9 @@
 
   {% if allowAdd == false %}
     {% if isStandalone==true %}
-    <div>This item is only available for pick-up. Please complete your current transaction for delivery and then create a new order for the pick-up items.</div>
+    <div style="font-style: italic; color: #c43e20;">This item is only available for pick-up. Please complete your current transaction for delivery and then create a new order for the pick-up items.</div>
     {% else %} 
-    <div>The item in your shopping cart cannot be combined with other products for delivery. Please complete your transaction then create a separate order for delivery.</div>
+    <div style="font-style: italic; color: #c43e20;">The item in your shopping cart cannot be combined with other products for delivery. Please complete your transaction then create a separate order for delivery.</div>
     {% endif %}
   {% endif %}
   </div>

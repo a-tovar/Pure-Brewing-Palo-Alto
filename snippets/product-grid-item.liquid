@@ -220,6 +220,7 @@ assign featured_media = product.featured_media
       {% if coming_soon or sold_out or pickup %}
         <div></div> 
       {%else %}
+      {% if allowAdd == true %}
       <div class="btn-wrapper">
         {%- if settings.quick_button == 'view' -%}
         <a class="product-grid-item__quick-button btn btn--quick-view" href="{{ product.url | within: collection }}"
@@ -236,7 +237,7 @@ assign featured_media = product.featured_media
           Buy Now
         </a>
         {% else %}
-        <button type="submit" name="add" class="product-grid-item__quick-button btn btn--quick-buy" {% if allowAdd == false %} disabled {% endif %} data-button-quick-buy>
+        <button type="submit" name="add" class="product-grid-item__quick-button btn btn--quick-buy" data-button-quick-buy>
           <span>{{ 'products.general.add_to_cart' | t }}</span>
           {%- render 'icon-loading' -%}
         </button>
@@ -244,6 +245,7 @@ assign featured_media = product.featured_media
         {%- endform -%}
         {%- endif -%}
       </div>
+      {% endif %}
       {% endif %}
       {%- endunless -%}
     </div>
